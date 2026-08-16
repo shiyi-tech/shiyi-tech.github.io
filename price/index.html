@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>郑中海外仓报价查询器</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <div class="brand">
+        <img src="../assets/zhengzhong-logo.png" alt="郑中海外仓">
+        <div>
+          <div class="brand-name">郑中海外仓</div>
+          <div class="brand-sub">郑中报价系统</div>
+        </div>
+      </div>
+      <div class="topbar-actions">
+        <a class="home-link" href="../" aria-label="返回郑中海外仓官网">← 返回官网</a>
+        <div class="rate-badge">
+          <span>USD</span>
+          <strong>预估价</strong>
+        </div>
+      </div>
+    </header>
+
+    <section class="workspace wizard-workspace">
+      <form class="quote-panel wizard-panel" id="quoteForm">
+        <div class="progress">
+          <span id="progressText">第 1 步 / 共 3 步</span>
+          <div class="progress-track"><div id="progressBar"></div></div>
+        </div>
+
+        <section class="section-block wizard-step" data-step="service">
+          <div class="section-head">
+            <span class="step">1</span>
+            <h2>业务类型</h2>
+          </div>
+          <div class="segmented" role="tablist" aria-label="业务类型">
+            <label><input type="radio" name="service" value="fulfillment" checked><span>一件代发</span></label>
+            <label><input type="radio" name="service" value="y2Exchange"><span>Y2换单</span></label>
+            <label><input type="radio" name="service" value="whatnot"><span>Whatnot</span></label>
+            <label><input type="radio" name="service" value="otherServices"><span>其他服务</span></label>
+          </div>
+        </section>
+
+        <section class="section-block wizard-step hidden" data-step="productType">
+          <div class="section-head">
+            <span class="step">2</span>
+            <h2>商品类型</h2>
+          </div>
+          <div class="segmented compact" role="radiogroup" aria-label="商品类型">
+            <label><input type="radio" name="productType" value="general" checked><span>普货</span></label>
+            <label><input type="radio" name="productType" value="sensitive"><span>敏感货</span></label>
+          </div>
+          <div class="wizard-actions">
+            <button type="button" class="ghost-btn" data-back>返回</button>
+          </div>
+        </section>
+
+        <section class="section-block wizard-step hidden" data-step="dailyVolume">
+          <div class="section-head">
+            <span class="step">3</span>
+            <h2>每天单量</h2>
+          </div>
+          <div class="segmented volume-options" role="radiogroup" aria-label="每天单量">
+            <label><input type="radio" name="dailyVolume" value="trial" checked><span>0-50 单<br><small>测品客户</small></span></label>
+            <label><input type="radio" name="dailyVolume" value="small"><span>50-100 单</span></label>
+            <label><input type="radio" name="dailyVolume" value="medium"><span>100-500 单</span></label>
+            <label><input type="radio" name="dailyVolume" value="large"><span>500+ 单</span></label>
+          </div>
+          <div class="wizard-actions">
+            <button type="button" class="ghost-btn" data-back>返回</button>
+          </div>
+        </section>
+
+        <section class="section-block wizard-step hidden" data-step="weightBand">
+          <div class="section-head">
+            <span class="step">4</span>
+            <h2>商品重量</h2>
+          </div>
+          <div class="segmented weight-options" role="radiogroup" aria-label="商品重量">
+            <label><input type="radio" name="weightBand" value="0-1" checked><span>0-1KG</span></label>
+            <label><input type="radio" name="weightBand" value="1-2"><span>1-2KG</span></label>
+            <label><input type="radio" name="weightBand" value="2-5"><span>2-5KG</span></label>
+            <label><input type="radio" name="weightBand" value="5-10"><span>5-10KG</span></label>
+            <label><input type="radio" name="weightBand" value="10-15"><span>10-15KG</span></label>
+            <label><input type="radio" name="weightBand" value="15-22"><span>15-22KG</span></label>
+          </div>
+          <div class="wizard-actions">
+            <button type="button" class="ghost-btn" data-back>返回</button>
+          </div>
+        </section>
+
+        <section class="section-block wizard-step hidden" data-step="y2Volume">
+          <div class="section-head">
+            <span class="step">2</span>
+            <h2>Y2换单</h2>
+          </div>
+          <div class="segmented compact" role="radiogroup" aria-label="Y2换单单量">
+            <label><input type="radio" name="y2Volume" value="standard" checked><span>0-1000 单</span></label>
+            <label><input type="radio" name="y2Volume" value="bulk"><span>1000+ 单</span></label>
+          </div>
+          <div class="wizard-actions">
+            <button type="button" class="ghost-btn" data-back>返回</button>
+          </div>
+        </section>
+
+        <section class="section-block wizard-step hidden" data-step="whatnotVolume">
+          <div class="section-head">
+            <span class="step">2</span>
+            <h2>Whatnot</h2>
+          </div>
+          <div class="segmented weight-options" role="radiogroup" aria-label="Whatnot 单量">
+            <label><input type="radio" name="whatnotVolume" value="unknown" checked><span>0-50 单<br><small>未知</small></span></label>
+            <label><input type="radio" name="whatnotVolume" value="small"><span>50-100 单</span></label>
+            <label><input type="radio" name="whatnotVolume" value="large"><span>100+ 单</span></label>
+          </div>
+          <div class="wizard-actions">
+            <button type="button" class="ghost-btn" data-back>返回</button>
+          </div>
+        </section>
+
+        <section class="section-block wizard-step hidden" data-step="otherServices">
+          <div class="section-head">
+            <span class="step">2</span>
+            <h2>其他服务</h2>
+          </div>
+          <div class="addon-list" id="otherAddonList"></div>
+          <div class="wizard-actions">
+            <button type="button" class="ghost-btn" data-back>返回</button>
+            <button type="button" class="primary-btn" id="otherResultBtn">查看报价</button>
+          </div>
+        </section>
+
+        <section class="wizard-step hidden result-panel" data-step="result">
+          <div class="result-card">
+          <div class="result-top">
+            <span id="resultLabel">报价结果</span>
+            <button type="button" id="resetBtn" title="重新开始">↺</button>
+          </div>
+          <div class="total" id="totalPrice">$0.00</div>
+          <div class="hint" id="manualHint">部分项目需要单独询价</div>
+          </div>
+
+          <section class="breakdown">
+            <h2>报价明细</h2>
+            <div id="breakdownRows"></div>
+          </section>
+
+          <section class="breakdown hidden addon-collapsible" id="fulfillmentAddonPriceSection">
+            <button type="button" class="collapse-trigger" id="addonToggle" aria-expanded="false">
+              <span>增值服务价格</span>
+              <strong id="addonToggleIcon">展开</strong>
+            </button>
+            <div class="addon-collapse-body hidden" id="addonCollapseBody">
+              <div class="inline-selector">
+              <h3>清点上架费用</h3>
+              <div class="segmented weight-options" role="radiogroup" aria-label="清点上架费用">
+                <label><input type="radio" name="skuCountTier" value="one" checked><span>单箱 1 SKU<br><small>$0 / 箱</small></span></label>
+                <label><input type="radio" name="skuCountTier" value="twoToFive"><span>单箱 2-5 SKU<br><small>$1 / 箱</small></span></label>
+                <label><input type="radio" name="skuCountTier" value="overFive"><span>单箱 5+ SKU<br><small>$2 / 箱</small></span></label>
+              </div>
+              </div>
+              <div class="addon-price-grid" id="fulfillmentAddonPrices"></div>
+            </div>
+          </section>
+
+          <section class="contact-card hidden" id="fulfillmentContactSection">
+            <div>
+              <h2>联系我们</h2>
+              <p>需要确认报价或提交需求，可以添加郑中海外仓微信。</p>
+            </div>
+            <button type="button" id="wechatBtn">
+              <span>微信：zhengzhonghwc</span>
+              <strong id="wechatBtnText">复制微信号</strong>
+            </button>
+            <div class="qr-grid">
+              <figure class="qr-card">
+                <img src="assets/wecom_qr.jpg" alt="企业微信二维码">
+                <figcaption>企业微信</figcaption>
+              </figure>
+              <figure class="qr-card">
+                <img src="assets/wechat_qr.jpg" alt="微信二维码">
+                <figcaption>微信</figcaption>
+              </figure>
+            </div>
+          </section>
+
+          <section class="notes">
+            <h2>服务说明和规则说明</h2>
+            <ul>
+              <li id="ruleServiceLine">一件代发费用为：订单处理 + 扫码验货 + 打包 + 扫码出库。</li>
+              <li id="ruleWeightLine">抛货取体积重和实际重量中的较大值，体积重按长 × 宽 × 高（cm）/ 6000 或长 × 宽 × 高（inch）/ 167 计算。</li>
+              <li id="ruleSkuLine">一票多 SKU 按打包后的包裹总重量计费；如需耗材或额外服务，按所选增值服务另计。</li>
+              <li id="ruleTimeLine">订单处理时效为 24 小时（工作日）；特殊渠道、异常处理和单询项目以人工确认为准。</li>
+            </ul>
+          </section>
+          <div class="wizard-actions">
+            <button type="button" class="ghost-btn" data-back>返回修改</button>
+            <button type="button" class="primary-btn" id="startOverBtn">重新开始</button>
+          </div>
+        </section>
+      </form>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
