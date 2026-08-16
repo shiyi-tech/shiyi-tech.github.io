@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>郑中海外仓 - 美国本土运营中心</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#1F4B7A;--navy-dark:#0d2236;--blue:#1F5C99;--blue-mid:#2471b8;--blue-light:#4a9fd4;
+  --gold:#e07b2a;--gold-light:#f59e4a;
+  --green:#2e7d32;--green-mid:#43a047;--green-light:#81c784;
+  --white:#fff;--gray-50:#f8fafc;--gray-100:#f1f5f9;--gray-200:#e2e8f0;
+  --gray-400:#94a3b8;--gray-600:#475569;--text:#1a2436;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Noto Sans SC',sans-serif;color:var(--text);background:#fff;overflow-x:hidden;}
+a{text-decoration:none;color:inherit;}
+ul{list-style:none;}
+
+/* ===== NAV ===== */
+#nav{position:fixed;top:0;left:0;right:0;z-index:999;background:rgba(13,34,54,0.97);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,0.07);transition:background .3s;}
+.nav-wrap{max-width:1300px;margin:0 auto;padding:0 40px;height:68px;display:flex;align-items:center;justify-content:center;}
+.nav-tabs{display:flex;align-items:center;gap:4px;}
+.nav-tab{padding:9px 24px;color:rgba(255,255,255,0.78);font-size:14px;border-radius:8px;cursor:pointer;transition:all .2s;white-space:nowrap;border:1px solid transparent;letter-spacing:0.5px;}
+.nav-tab:hover{color:#fff;background:rgba(255,255,255,0.08);}
+.nav-tab.active{color:#fff;background:rgba(31,92,153,0.65);border-color:rgba(74,159,212,0.4);}
+
+/* ===== SVG LOGO (used everywhere) ===== */
+.logo-svg{display:inline-block;color:currentColor;}
+.logo-svg svg{display:block;}
+
+/* ===== PAGE ===== */
+.page{display:none;padding-top:68px;min-height:100vh;}
+.page.active{display:block;}
+
+/* ===== SHARED ===== */
+.section{padding:88px 0;}
+.section.alt{background:var(--gray-50);}
+.wrap{max-width:1260px;margin:0 auto;padding:0 44px;}
+.sec-eye{font-size:11px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--blue);display:flex;align-items:center;gap:10px;margin-bottom:14px;}
+.sec-eye::before{content:'';width:22px;height:2px;background:var(--blue);}
+.sec-eye.gold{color:var(--gold);}
+.sec-eye.gold::before{background:var(--gold);}
+.sec-eye.white{color:rgba(255,255,255,0.7);}
+.sec-eye.white::before{background:rgba(255,255,255,0.7);}
+.sec-title{font-family:'Noto Serif SC',serif;font-size:clamp(26px,3vw,40px);font-weight:700;color:var(--navy-dark);line-height:1.3;margin-bottom:14px;}
+.sec-title.white{color:#fff;}
+.sec-sub{font-size:15px;color:var(--gray-400);line-height:1.9;font-weight:300;max-width:580px;}
+.sec-sub.white{color:rgba(255,255,255,0.55);}
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .65s ease,transform .65s ease;}
+.reveal.in{opacity:1;transform:translateY(0);}
+.btn-gold{display:inline-flex;align-items:center;gap:8px;padding:13px 30px;border-radius:9px;font-size:14px;font-weight:700;cursor:pointer;transition:all .25s;background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--navy-dark);box-shadow:0 4px 16px rgba(224,123,42,0.3);}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(224,123,42,0.45);}
+
+/* ===== HERO ===== */
+.hero{min-height:100vh;background:linear-gradient(160deg,#080f1d 0%,#0d2236 38%,#1a3a5c 75%,#0d2b4a 100%);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;padding-top:68px;}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 90% 70% at 50% 50%,rgba(31,92,153,.2) 0%,transparent 70%),radial-gradient(ellipse 40% 40% at 15% 85%,rgba(224,123,42,.07) 0%,transparent 60%);}
+.hero::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.022) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.022) 1px,transparent 1px);background-size:64px 64px;}
+.hero-inner{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;text-align:center;padding:80px 40px;max-width:860px;}
+.hero-logo-wrap{position:relative;margin-bottom:24px;animation:fadeUp .8s ease both;}
+.hero-logo-glow{position:absolute;inset:-28px;background:radial-gradient(circle,rgba(31,92,153,.25) 0%,transparent 70%);border-radius:50%;animation:glow 3s ease-in-out infinite;}
+@keyframes glow{0%,100%{opacity:.5;transform:scale(1);}50%{opacity:1;transform:scale(1.1);}}
+.hero-logo-icon{width:128px;height:128px;position:relative;z-index:1;filter:drop-shadow(0 0 20px rgba(31,92,153,0.6));}
+.hero-brand{font-family:'Noto Serif SC',serif;font-size:clamp(52px,7.5vw,96px);font-weight:700;color:#fff;line-height:1;letter-spacing:8px;margin-bottom:22px;animation:fadeUp .8s .15s ease both;}
+.hero-tagline{font-family:'Noto Serif SC',serif;font-size:clamp(17px,2.3vw,26px);color:rgba(255,255,255,.88);font-weight:400;letter-spacing:1px;margin-bottom:12px;animation:fadeUp .8s .28s ease both;}
+.hero-tagline em{font-style:normal;background:linear-gradient(135deg,var(--gold),var(--gold-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero-desc{font-size:15px;color:rgba(255,255,255,.52);line-height:2;font-weight:300;margin-bottom:56px;animation:fadeUp .8s .4s ease both;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
+.hero-stats{display:flex;gap:0;border:1px solid rgba(255,255,255,.1);border-radius:16px;overflow:hidden;width:100%;max-width:680px;animation:fadeUp .8s .55s ease both;}
+.stat-card{flex:1;padding:26px 16px;text-align:center;border-right:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.05);backdrop-filter:blur(8px);}
+.stat-card:last-child{border-right:none;}
+.stat-num{font-family:'Noto Serif SC',serif;font-size:30px;font-weight:700;color:#fff;line-height:1;margin-bottom:6px;}
+.stat-num em{font-style:normal;color:var(--gold-light);font-size:17px;}
+.stat-lbl{font-size:11px;color:rgba(255,255,255,.42);}
+
+/* ===== HOME SERVICES STRIP ===== */
+.home-svc{background:var(--navy-dark);}
+.home-svc-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:0;border:1px solid rgba(255,255,255,.08);border-radius:18px;overflow:hidden;margin-top:52px;}
+.hs-item{padding:32px 22px;text-align:center;border-right:1px solid rgba(255,255,255,.08);transition:background .3s;}
+.hs-item:last-child{border-right:none;}
+.hs-item:hover{background:rgba(255,255,255,.06);}
+.hs-icon{font-size:32px;margin-bottom:14px;}
+.hs-item h4{font-family:'Noto Serif SC',serif;font-size:15px;font-weight:700;color:#fff;margin-bottom:8px;}
+.hs-item p{font-size:12.5px;color:rgba(255,255,255,.45);line-height:1.7;}
+/* map */
+.home-map-wrap{border-radius:18px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.12);margin-top:52px;}
+.home-map-wrap img{width:100%;display:block;}
+/* about snippet */
+.home-about-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;margin-top:52px;}
+.home-about-text p{font-size:15px;color:var(--gray-600);line-height:2.1;font-weight:300;margin-bottom:18px;}
+.home-about-text strong{color:var(--navy-dark);font-weight:700;}
+.home-about-nums{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:32px;}
+.han{background:var(--gray-50);border:1px solid var(--gray-200);border-radius:14px;padding:22px 20px;text-align:center;}
+.han-n{font-family:'Noto Serif SC',serif;font-size:34px;font-weight:700;color:var(--navy);line-height:1;margin-bottom:6px;}
+.han-n em{font-style:normal;color:var(--blue);font-size:20px;}
+.han-l{font-size:12px;color:var(--gray-400);}
+.home-about-card{background:linear-gradient(145deg,var(--navy-dark),#1a3a5c);border-radius:20px;padding:44px;color:#fff;position:relative;overflow:hidden;}
+.home-about-card::before{content:'';position:absolute;top:-40px;right:-40px;width:200px;height:200px;background:radial-gradient(circle,rgba(31,92,153,.2) 0%,transparent 70%);border-radius:50%;}
+.hac-lbl{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold-light);font-weight:600;margin-bottom:20px;}
+.hac-title{font-family:'Noto Serif SC',serif;font-size:20px;font-weight:700;margin-bottom:22px;line-height:1.5;}
+.hac-pts{display:flex;flex-direction:column;gap:11px;}
+.hac-pt{display:flex;align-items:flex-start;gap:10px;font-size:13.5px;color:rgba(255,255,255,.72);line-height:1.7;font-weight:300;}
+.hac-pt::before{content:'';width:6px;height:6px;background:var(--gold);border-radius:50%;margin-top:6px;flex-shrink:0;}
+/* diff */
+.diff-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:52px;}
+.diff-card{background:#fff;border-radius:18px;border:1px solid var(--gray-200);padding:40px 36px;position:relative;overflow:hidden;transition:all .35s;}
+.diff-card:hover{transform:translateY(-5px);box-shadow:0 18px 50px rgba(0,0,0,.1);}
+.diff-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--blue),var(--blue-light));}
+.diff-card.g::before{background:linear-gradient(90deg,var(--gold),var(--gold-light));}
+.diff-icon{font-size:36px;margin-bottom:18px;}
+.diff-card h3{font-family:'Noto Serif SC',serif;font-size:20px;font-weight:700;color:var(--navy-dark);margin-bottom:12px;}
+.diff-card p{font-size:14px;color:var(--gray-600);line-height:1.9;font-weight:300;margin-bottom:18px;}
+.diff-list{display:flex;flex-direction:column;gap:8px;}
+.diff-list li{display:flex;align-items:flex-start;gap:9px;font-size:13px;color:var(--gray-600);}
+.diff-list li::before{content:'✓';color:var(--blue);font-weight:700;flex-shrink:0;}
+.diff-card.g .diff-list li::before{color:var(--gold);}
+.diff-cap{margin-top:20px;font-size:12.5px;font-style:italic;color:var(--blue);border-left:2px solid var(--blue);padding-left:10px;}
+.diff-card.g .diff-cap{color:var(--gold);border-color:var(--gold);}
+
+/* ===== DARK HERO BANNER ===== */
+.dark-hero{background:linear-gradient(160deg,#080f1d 0%,#0d2236 50%,#1a3a5c 100%);padding:76px 0 56px;position:relative;overflow:hidden;}
+.dark-hero::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:56px 56px;}
+.dark-hero .wrap{position:relative;z-index:1;}
+
+/* ===== NETWORK ===== */
+.map-embed-box{border-radius:18px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.15);margin-top:52px;}
+.map-embed-box img{width:100%;display:block;}
+.wh-tabs{display:flex;gap:12px;margin-bottom:40px;flex-wrap:wrap;}
+.wh-tab-btn{padding:10px 24px;border-radius:100px;border:1.5px solid var(--gray-200);font-size:13px;font-weight:700;color:var(--gray-600);cursor:pointer;transition:all .2s;background:#fff;}
+.wh-tab-btn.active,.wh-tab-btn:hover{background:var(--blue);color:#fff;border-color:var(--blue);}
+.wh-block{display:none;}
+.wh-block.active{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;}
+.wh-overview{background:#fff;border-radius:18px;border:1px solid var(--gray-200);overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,.06);}
+.wh-ov-hd{padding:28px 32px;border-bottom:1px solid var(--gray-100);}
+.wh-tag{display:inline-block;padding:5px 14px;border-radius:100px;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:12px;}
+.tag-e{background:rgba(31,92,153,.1);color:var(--blue);}
+.tag-m{background:rgba(224,123,42,.1);color:var(--gold);}
+.tag-w{background:rgba(46,125,50,.1);color:var(--green);}
+.wh-ov-hd h3{font-family:'Noto Serif SC',serif;font-size:22px;font-weight:700;color:var(--navy-dark);margin-bottom:8px;}
+.wh-ov-hd p{font-size:14px;color:var(--gray-400);font-weight:300;line-height:1.7;}
+.wh-tax{display:inline-flex;align-items:center;gap:6px;background:rgba(31,92,153,.08);border:1px solid rgba(31,92,153,.2);color:var(--blue);padding:6px 14px;border-radius:8px;font-size:12px;font-weight:600;margin-top:14px;}
+.wh-ov-body{padding:28px 32px;}
+.wh-pts{display:flex;flex-direction:column;gap:12px;}
+.wh-pt{display:flex;align-items:flex-start;gap:11px;font-size:14px;color:var(--gray-600);line-height:1.75;}
+.wh-pt-dot{width:8px;height:8px;border-radius:50%;margin-top:5px;flex-shrink:0;}
+.d-e{background:var(--blue);}
+.d-m{background:var(--gold);}
+.d-w{background:var(--green-mid);}
+.wh-svc-tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:16px;}
+.wh-svc-tag{font-size:12px;padding:5px 12px;border-radius:7px;background:var(--gray-100);color:var(--gray-600);border:1px solid var(--gray-200);}
+.wh-adv-list{display:flex;flex-direction:column;gap:16px;}
+.wh-adv-title{font-family:'Noto Serif SC',serif;font-size:18px;font-weight:700;color:var(--navy-dark);margin-bottom:4px;}
+.wh-adv{background:#fff;border-radius:14px;border:1px solid var(--gray-200);padding:22px 24px;display:flex;align-items:flex-start;gap:16px;transition:all .3s;}
+.wh-adv:hover{box-shadow:0 10px 30px rgba(0,0,0,.08);transform:translateX(4px);}
+.wh-adv-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
+.ai-e{background:rgba(31,92,153,.1);}
+.ai-m{background:rgba(224,123,42,.1);}
+.ai-w{background:rgba(46,125,50,.1);}
+.wh-adv h4{font-family:'Noto Serif SC',serif;font-size:15px;font-weight:700;color:var(--navy-dark);margin-bottom:6px;}
+.wh-adv p{font-size:13px;color:var(--gray-400);line-height:1.75;font-weight:300;}
+.multi-cta{background:linear-gradient(135deg,var(--navy-dark),#1a3a5c);border-radius:20px;padding:48px 56px;margin-top:56px;display:flex;align-items:center;justify-content:space-between;gap:40px;flex-wrap:wrap;position:relative;overflow:hidden;}
+.multi-cta::before{content:'';position:absolute;right:-40px;top:-40px;width:220px;height:220px;background:radial-gradient(circle,rgba(31,92,153,.22) 0%,transparent 70%);border-radius:50%;}
+.multi-cta h3{font-family:'Noto Serif SC',serif;font-size:22px;color:#fff;margin-bottom:10px;}
+.multi-cta p{font-size:14px;color:rgba(255,255,255,.6);font-weight:300;max-width:440px;line-height:1.85;}
+
+/* ===== SERVICES ===== */
+.svc-ov-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:18px;margin-top:52px;}
+.svc-ov-card{background:#fff;border-radius:16px;border:1px solid var(--gray-200);padding:30px 20px;text-align:center;transition:all .3s;position:relative;overflow:hidden;}
+.svc-ov-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;transform:scaleX(0);transform-origin:left;transition:transform .35s;}
+.svc-ov-card:hover{transform:translateY(-4px);box-shadow:0 14px 40px rgba(0,0,0,.09);}
+.svc-ov-card:hover::after{transform:scaleX(1);}
+.sov-b::after{background:linear-gradient(90deg,var(--blue),var(--blue-light));}
+.sov-g::after{background:linear-gradient(90deg,var(--gold),var(--gold-light));}
+.sov-gr::after{background:linear-gradient(90deg,var(--green-mid),var(--green-light));}
+.sov-icon{font-size:36px;margin-bottom:14px;}
+.svc-ov-card h4{font-family:'Noto Serif SC',serif;font-size:16px;font-weight:700;color:var(--navy-dark);margin-bottom:8px;}
+.svc-ov-card p{font-size:13px;color:var(--gray-400);line-height:1.7;}
+
+/* Service block */
+.sdb{margin-top:80px;}
+.sdb+.sdb{border-top:2px solid var(--gray-100);padding-top:80px;margin-top:80px;}
+.sdb-hd{display:flex;align-items:center;gap:18px;margin-bottom:20px;}
+.sdb-icon{width:68px;height:68px;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:32px;flex-shrink:0;}
+.sdi-b{background:linear-gradient(135deg,#e8f0fa,#cfe0f5);}
+.sdi-g{background:linear-gradient(135deg,#fdf0e0,#fae0c0);}
+.sdi-gr{background:linear-gradient(135deg,#e8f5e9,#c8e6c9);}
+.sdb-hd h2{font-family:'Noto Serif SC',serif;font-size:clamp(22px,2.8vw,32px);font-weight:700;color:var(--navy-dark);}
+.sdb-hd .sub{font-size:14px;color:var(--gray-400);margin-top:5px;}
+.sdb-intro{font-size:15px;color:var(--gray-600);line-height:2.05;font-weight:300;max-width:900px;margin-bottom:36px;}
+.flow-section-title{font-family:'Noto Serif SC',serif;font-size:18px;font-weight:700;color:var(--navy-dark);margin-bottom:20px;padding-left:14px;border-left:4px solid var(--blue);}
+.sdb-adv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:10px;}
+.sdb-adv{background:var(--gray-50);border:1px solid var(--gray-200);border-radius:14px;padding:26px 24px;}
+.sdb-adv-ico{font-size:26px;margin-bottom:12px;}
+.sdb-adv h5{font-family:'Noto Serif SC',serif;font-size:15px;font-weight:700;color:var(--navy-dark);margin-bottom:8px;}
+.sdb-adv p{font-size:13.5px;color:var(--gray-400);line-height:1.8;font-weight:300;}
+
+/* ============================
+   CUSTOM FLOW DIAGRAMS
+   ============================ */
+
+/* --- Wave flow (仓盛style: alternating circles on wave) --- */
+.wave-flow{position:relative;padding:40px 0 20px;margin-bottom:36px;}
+.wave-line{position:absolute;top:50%;left:40px;right:40px;height:3px;background:linear-gradient(90deg,var(--green-mid),var(--blue-mid));border-radius:3px;transform:translateY(-50%);}
+.wave-steps{display:flex;justify-content:space-between;align-items:center;position:relative;z-index:1;}
+.wave-step{display:flex;flex-direction:column;align-items:center;gap:10px;}
+.wave-step.up{margin-top:-36px;}
+.wave-step.down{margin-top:36px;}
+.ws-circle{width:68px;height:68px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0;box-shadow:0 6px 20px rgba(0,0,0,.15);}
+.wsc-green{background:linear-gradient(135deg,var(--green-mid),var(--green));}
+.wsc-blue{background:linear-gradient(135deg,var(--blue-mid),var(--navy));}
+.ws-label{font-size:13px;font-weight:700;color:var(--navy-dark);text-align:center;white-space:nowrap;}
+
+/* --- Stage flow (4-row ops stages like image 6) --- */
+.stage-flow{border-radius:16px;overflow:hidden;border:1px solid var(--gray-200);margin-bottom:36px;}
+.stage-row{display:flex;align-items:stretch;border-bottom:1px solid var(--gray-200);}
+.stage-row:last-child{border-bottom:none;}
+.stage-label{display:flex;align-items:center;justify-content:center;min-width:110px;padding:0 18px;font-size:14px;font-weight:700;color:#fff;letter-spacing:1px;writing-mode:horizontal-tb;gap:6px;}
+.sl-green{background:linear-gradient(135deg,var(--green-mid),var(--green));}
+.sl-blue{background:linear-gradient(135deg,var(--blue-mid),var(--navy));}
+.sl-teal{background:linear-gradient(135deg,#00897b,#004d40);}
+.sl-orange{background:linear-gradient(135deg,var(--gold),#c0620a);}
+.stage-steps{display:flex;align-items:center;padding:20px 24px;gap:0;flex:1;flex-wrap:wrap;}
+.stage-step{display:flex;flex-direction:column;align-items:center;text-align:center;padding:10px 16px;min-width:90px;}
+.ss-icon{font-size:28px;margin-bottom:8px;}
+.ss-name{font-size:13px;font-weight:700;color:var(--navy-dark);margin-bottom:3px;}
+.ss-desc{font-size:11px;color:var(--gray-400);}
+.ss-arrow{color:var(--gray-200);font-size:18px;padding:0 4px;align-self:center;margin-bottom:18px;}
+
+/* --- Circle loop flow (FBM / FBA / Return style: 2-row loop) --- */
+.loop-flow{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start;margin-bottom:36px;background:var(--gray-50);border:1px solid var(--gray-200);border-radius:18px;padding:36px;}
+.loop-left{display:flex;flex-direction:column;gap:12px;}
+.loop-pt{display:flex;align-items:flex-start;gap:12px;font-size:14px;color:var(--gray-600);line-height:1.75;}
+.loop-dot{width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,var(--green-mid),var(--green));display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:700;flex-shrink:0;margin-top:1px;}
+.loop-dot.done{background:linear-gradient(135deg,var(--blue-mid),var(--navy));}
+.loop-right{}
+.loop-diagram{position:relative;padding:20px;}
+.loop-row{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:24px;}
+.loop-row:last-child{margin-bottom:0;}
+.loop-node{display:flex;flex-direction:column;align-items:center;gap:6px;min-width:80px;}
+.ln-circle{width:62px;height:62px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;box-shadow:0 4px 14px rgba(0,0,0,.12);}
+.lnc-green{background:linear-gradient(135deg,var(--green-mid),var(--green));}
+.lnc-blue{background:linear-gradient(135deg,var(--blue-mid),var(--navy));}
+.ln-label{font-size:12px;font-weight:700;color:var(--navy-dark);text-align:center;}
+.loop-arr{color:var(--green-mid);font-size:20px;font-weight:700;align-self:center;margin-bottom:22px;}
+.loop-arr.down{position:absolute;right:20px;top:50%;transform:translateY(-50%);font-size:22px;}
+
+/* --- Linear step flow (simple boxes + arrows) --- */
+.linear-flow{display:flex;align-items:stretch;border-radius:14px;overflow:hidden;border:1px solid var(--gray-200);margin-bottom:36px;background:#fff;}
+.lf-step{flex:1;padding:24px 14px;text-align:center;border-right:1px solid var(--gray-200);position:relative;transition:background .25s;}
+.lf-step:last-child{border-right:none;}
+.lf-step:hover{background:var(--gray-50);}
+.lf-num{position:absolute;top:10px;left:12px;font-size:10px;font-weight:700;color:var(--gray-200);font-family:'Noto Serif SC',serif;}
+.lf-icon{font-size:30px;margin-bottom:10px;}
+.lf-step h5{font-family:'Noto Serif SC',serif;font-size:14px;font-weight:700;color:var(--navy-dark);margin-bottom:6px;}
+.lf-step p{font-size:11.5px;color:var(--gray-400);line-height:1.65;}
+
+/* --- OMS/WMS system diagram --- */
+.sys-diagram{background:linear-gradient(135deg,#f0f4f8,#e8eef5);border-radius:20px;padding:40px;margin-bottom:36px;border:1px solid var(--gray-200);}
+.sys-title{text-align:center;font-family:'Noto Serif SC',serif;font-size:20px;font-weight:700;color:var(--navy-dark);margin-bottom:36px;}
+.sys-grid{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:0;align-items:center;}
+.sys-col{display:flex;flex-direction:column;gap:8px;}
+.sys-box{background:#fff;border:1px solid var(--gray-200);border-radius:8px;padding:10px 14px;font-size:13px;font-weight:500;color:var(--navy-dark);text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.05);}
+.sys-center-box{background:linear-gradient(135deg,var(--blue-mid),var(--navy));color:#fff;border-radius:14px;padding:20px 28px;text-align:center;min-width:140px;}
+.sys-center-box .icon{font-size:28px;margin-bottom:8px;}
+.sys-center-box h4{font-family:'Noto Serif SC',serif;font-size:15px;font-weight:700;margin-bottom:3px;}
+.sys-center-box p{font-size:11px;color:rgba(255,255,255,.65);}
+.sys-tag{background:linear-gradient(135deg,var(--navy),var(--navy-dark));color:#fff;border-radius:10px;padding:10px 18px;font-size:13px;font-weight:700;text-align:center;}
+.sys-arrow-col{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:0 16px;}
+.sys-arrow-col svg{display:block;}
+.sys-cloud{text-align:center;margin-bottom:24px;}
+.sys-cloud-icon{font-size:36px;color:var(--gray-400);}
+.sys-cloud-label{font-size:12px;color:var(--gray-400);margin-top:4px;}
+
+/* --- Feature list with icons --- */
+.feat-list{display:flex;flex-direction:column;gap:16px;margin-bottom:36px;}
+.feat-item{display:flex;align-items:flex-start;gap:16px;background:#fff;border:1px solid var(--gray-200);border-radius:12px;padding:18px 22px;transition:all .25s;}
+.feat-item:hover{box-shadow:0 8px 24px rgba(0,0,0,.08);transform:translateX(4px);}
+.feat-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;background:linear-gradient(135deg,#e8f0fa,#cfe0f5);}
+.feat-item h5{font-family:'Noto Serif SC',serif;font-size:15px;font-weight:700;color:var(--navy-dark);margin-bottom:5px;}
+.feat-item p{font-size:13px;color:var(--gray-400);line-height:1.7;font-weight:300;}
+
+/* ===== ADVANTAGES ===== */
+.adv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--gray-200);border-radius:20px;overflow:hidden;margin-top:52px;}
+.adv-item{background:#fff;padding:44px 36px;transition:background .25s;}
+.adv-item:hover{background:var(--gray-50);}
+.adv-num{font-family:'Noto Serif SC',serif;font-size:52px;font-weight:700;color:#edf0f5;line-height:1;margin-bottom:16px;letter-spacing:-3px;}
+.adv-item h3{font-family:'Noto Serif SC',serif;font-size:17px;font-weight:700;color:var(--navy-dark);margin-bottom:11px;}
+.adv-item p{font-size:13.5px;color:var(--gray-400);line-height:1.95;font-weight:300;}
+.adv-cap{display:inline-block;margin-top:14px;font-size:11.5px;font-style:italic;color:var(--blue);border-left:2px solid var(--blue);padding-left:9px;}
+.value-strip{background:linear-gradient(135deg,var(--navy-dark),#1a3a5c);border-radius:20px;padding:50px;margin-top:52px;display:grid;grid-template-columns:1fr 2fr;gap:52px;align-items:center;}
+.vs-l h3{font-family:'Noto Serif SC',serif;font-size:22px;color:#fff;line-height:1.5;margin-bottom:8px;}
+.vs-l p{font-size:14px;color:rgba(255,255,255,.5);font-weight:300;line-height:1.8;}
+.vs-items{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.vs-item{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:17px 18px;display:flex;align-items:flex-start;gap:11px;}
+.vs-ck{font-size:16px;flex-shrink:0;}
+.vs-item p{font-size:13px;color:rgba(255,255,255,.72);font-weight:300;line-height:1.6;}
+
+/* ===== TECH ===== */
+.tech-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:26px;margin-top:52px;}
+.tech-card{background:#fff;border-radius:18px;border:1px solid var(--gray-200);padding:40px 36px;position:relative;overflow:hidden;transition:all .3s;}
+.tech-card:hover{transform:translateY(-5px);box-shadow:0 20px 50px rgba(0,0,0,.1);}
+.tc-num{position:absolute;top:22px;right:26px;font-family:'Noto Serif SC',serif;font-size:62px;font-weight:700;color:rgba(0,0,0,.04);line-height:1;letter-spacing:-4px;}
+.tc-icon{font-size:36px;margin-bottom:18px;}
+.tech-card h3{font-family:'Noto Serif SC',serif;font-size:20px;font-weight:700;color:var(--navy-dark);margin-bottom:12px;}
+.tech-card p{font-size:14px;color:var(--gray-400);line-height:1.9;font-weight:300;margin-bottom:18px;}
+.tech-tags{display:flex;flex-wrap:wrap;gap:7px;}
+.t-tag{font-size:12px;padding:5px 13px;border-radius:7px;background:var(--gray-100);color:var(--gray-600);border:1px solid var(--gray-200);}
+.fleet-g{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px;}
+.fleet-i{background:var(--gray-50);border:1px solid var(--gray-200);border-radius:12px;padding:18px;text-align:center;}
+.fleet-n{font-family:'Noto Serif SC',serif;font-size:36px;font-weight:700;color:var(--navy);line-height:1;}
+.fleet-n span{font-size:18px;}
+.fleet-l{font-size:12px;color:var(--gray-400);margin-top:5px;}
+.proc-flow{display:flex;background:#fff;border:1px solid var(--gray-200);border-radius:18px;overflow:hidden;margin-top:36px;}
+.proc-s{flex:1;padding:30px 20px;text-align:center;border-right:1px solid var(--gray-200);transition:background .25s;}
+.proc-s:last-child{border-right:none;}
+.proc-s:hover{background:var(--gray-50);}
+.proc-icon{font-size:28px;margin-bottom:12px;}
+.proc-s h4{font-family:'Noto Serif SC',serif;font-size:14px;font-weight:700;color:var(--navy-dark);margin-bottom:7px;}
+.proc-s p{font-size:11.5px;color:var(--gray-400);line-height:1.7;}
+
+/* ===== ABOUT ===== */
+.about-layout{display:grid;grid-template-columns:1fr 1fr;gap:68px;align-items:start;margin-top:52px;}
+.about-text p{font-size:15px;color:var(--gray-600);line-height:2.1;font-weight:300;margin-bottom:18px;}
+.about-text strong{color:var(--navy-dark);font-weight:700;}
+.belief-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:30px;}
+.belief-card{background:var(--gray-50);border:1px solid var(--gray-200);border-radius:14px;padding:22px 18px;text-align:center;transition:all .3s;}
+.belief-card:hover{background:#fff;box-shadow:0 10px 30px rgba(0,0,0,.07);transform:translateY(-3px);}
+.bc-icon{font-size:26px;margin-bottom:10px;}
+.belief-card h4{font-family:'Noto Serif SC',serif;font-size:14px;font-weight:700;color:var(--navy-dark);margin-bottom:5px;}
+.belief-card p{font-size:12px;color:var(--gray-400);line-height:1.7;}
+.team-card{background:var(--navy-dark);border-radius:20px;padding:44px;color:#fff;position:relative;overflow:hidden;}
+.team-card::before{content:'';position:absolute;top:-40px;right:-40px;width:200px;height:200px;background:radial-gradient(circle,rgba(31,92,153,.2) 0%,transparent 70%);border-radius:50%;}
+.team-eye{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold-light);margin-bottom:18px;font-weight:600;}
+.team-card h3{font-family:'Noto Serif SC',serif;font-size:20px;margin-bottom:22px;line-height:1.5;}
+.team-stats{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:26px;}
+.ts{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:17px;text-align:center;}
+.ts-n{font-family:'Noto Serif SC',serif;font-size:28px;font-weight:700;color:#fff;line-height:1;margin-bottom:5px;}
+.ts-n em{font-style:normal;color:var(--gold-light);font-size:16px;}
+.ts-l{font-size:11px;color:rgba(255,255,255,.42);}
+.team-pts{display:flex;flex-direction:column;gap:10px;}
+.team-pt{display:flex;align-items:flex-start;gap:10px;font-size:13px;color:rgba(255,255,255,.7);line-height:1.7;}
+.team-pt::before{content:'';width:6px;height:6px;background:var(--gold);border-radius:50%;margin-top:6px;flex-shrink:0;}
+.contact-inner{background:linear-gradient(135deg,var(--navy-dark),#1a3a5c);border-radius:24px;padding:60px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+.cl h3{font-family:'Noto Serif SC',serif;font-size:26px;color:#fff;margin-bottom:12px;}
+.cl p{font-size:14px;color:rgba(255,255,255,.55);line-height:1.9;font-weight:300;margin-bottom:10px;}
+.cl-slogan{font-size:16px;font-style:italic;background:linear-gradient(135deg,var(--gold),var(--gold-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-top:20px;}
+.c-items{display:flex;flex-direction:column;gap:16px;}
+.c-item{display:flex;align-items:center;gap:16px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:13px;padding:17px 22px;transition:all .25s;}
+.c-item:hover{background:rgba(255,255,255,.12);border-color:rgba(224,123,42,.3);}
+.ci-ico{font-size:22px;flex-shrink:0;}
+.ci-lbl{font-size:10px;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:1px;margin-bottom:2px;}
+.ci-val{font-size:15px;color:#fff;font-weight:500;}
+.ci-val a{color:#fff;}
+.ci-val a:hover{color:var(--gold-light);}
+
+/* ===== FOOTER ===== */
+footer{background:#04090f;padding:56px 0 26px;border-top:1px solid rgba(255,255,255,.05);}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:52px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.05);margin-bottom:24px;}
+.fb-logo{display:flex;align-items:center;gap:12px;margin-bottom:16px;}
+.fb-logo-icon{width:38px;height:38px;color:rgba(255,255,255,.85);flex-shrink:0;}
+.fb-logo-text{display:flex;flex-direction:column;line-height:1.2;}
+.nlc{font-family:'Noto Serif SC',serif;font-size:17px;font-weight:700;color:#fff;letter-spacing:2px;}
+.nle{font-size:9px;font-weight:300;color:rgba(255,255,255,.5);letter-spacing:3px;text-transform:uppercase;}
+.fb-desc{font-size:13px;color:rgba(255,255,255,.32);line-height:2;max-width:260px;font-weight:300;}
+.f-slogan{font-size:13px;color:var(--gold);font-style:italic;margin-top:16px;}
+.footer-col h5{font-size:11px;font-weight:700;color:rgba(255,255,255,.55);letter-spacing:2px;text-transform:uppercase;margin-bottom:16px;}
+.footer-col li{margin-bottom:8px;}
+.footer-col li a{font-size:13px;color:rgba(255,255,255,.35);transition:color .2s;font-weight:300;}
+.footer-col li a:hover{color:var(--gold-light);}
+.footer-bot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;}
+.footer-bot p{font-size:12px;color:rgba(255,255,255,.18);}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:1080px){
+  .diff-grid,.home-about-grid,.about-layout,.contact-inner,.wh-block,.value-strip,.loop-flow,.sys-grid{grid-template-columns:1fr;}
+  .svc-ov-grid{grid-template-columns:repeat(3,1fr);}
+  .adv-grid{grid-template-columns:repeat(2,1fr);}
+  .tech-grid{grid-template-columns:1fr;}
+  .footer-top{grid-template-columns:1fr 1fr;}
+  .home-svc-grid{grid-template-columns:repeat(3,1fr);}
+  .sdb-adv-grid{grid-template-columns:repeat(2,1fr);}
+  .wave-steps{flex-wrap:wrap;justify-content:center;gap:20px;}
+  .wave-step.up,.wave-step.down{margin-top:0;}
+}
+@media(max-width:768px){
+  .nav-tab{padding:8px 14px;font-size:12px;}
+  .svc-ov-grid,.adv-grid,.sdb-adv-grid,.team-stats,.vs-items,.fleet-g,.belief-grid{grid-template-columns:1fr;}
+  .home-svc-grid{grid-template-columns:1fr 1fr;}
+  .linear-flow,.proc-flow{flex-direction:column;}
+  .lf-step,.proc-s{border-right:none;border-bottom:1px solid var(--gray-200);}
+  .hero-stats{flex-direction:column;}
+  .stat-card{border-right:none;border-bottom:1px solid rgba(255,255,255,.1);}
+  .stat-card:last-child{border-bottom:none;}
+  .footer-top{grid-template-columns:1fr;gap:32px;}
+  .wrap{padding:0 20px;}
+  .nav-wrap{padding:0 16px;}
+  .section{padding:64px 0;}
+  .multi-cta{padding:32px;flex-direction:column;}
+  .stage-steps{flex-wrap:wrap;}
+}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="nav-wrap">
+    <div class="nav-tabs">
+      <div class="nav-tab active" data-page="home" onclick="showPage('home')">首页</div>
+      <div class="nav-tab" data-page="network" onclick="showPage('network')">仓储布局</div>
+      <div class="nav-tab" data-page="services" onclick="showPage('services')">核心服务</div>
+      <div class="nav-tab" data-page="advantages" onclick="showPage('advantages')">核心优势</div>
+      <div class="nav-tab" data-page="tech" onclick="showPage('tech')">技术支持</div>
+      <a class="nav-tab" href="price/">自助报价</a>
+      <div class="nav-tab" data-page="about" onclick="showPage('about')">关于我们</div>
+    </div>
+  </div>
+</nav>
+
+<!-- ===================== HOME ===================== -->
+<div class="page active" id="page-home">
+  <div class="hero">
+    <div class="hero-inner">
+      <div class="hero-logo-wrap">
+        <div class="hero-logo-glow"></div>
+        <div class="hero-logo-icon logo-svg"><img src="assets/zhengzhong-logo.png" alt="郑中海外仓" style="width:128px;height:128px;object-fit:contain;border-radius:16px;display:block;"></div>
+      </div>
+      <div class="hero-brand">郑中海外仓</div>
+      <div class="hero-tagline">不只是海外仓，更是您在<em>美国的本地运营中心</em></div>
+      <p class="hero-desc">提供定制化仓储、FBA中转、一件代发及本土履约解决方案<br>助力跨境卖家实现高效、稳定、低成本的美国市场布局</p>
+      <div class="hero-stats">
+        <div class="stat-card"><div class="stat-num">4<em>个</em></div><div class="stat-lbl">美国运营仓库</div></div>
+        <div class="stat-card"><div class="stat-num">75<em>%+</em></div><div class="stat-lbl">五年以上经验员工</div></div>
+        <div class="stat-card"><div class="stat-num">6<em>辆</em></div><div class="stat-lbl">自营运输卡车</div></div>
+        <div class="stat-card"><div class="stat-num">99.9<em>%</em></div><div class="stat-lbl">订单发货准确率</div></div>
+      </div>
+    </div>
+  </div>
+  <section class="section home-svc">
+    <div class="wrap">
+      <div class="reveal"><div class="sec-eye white">Our Services</div><h2 class="sec-title white">一站式仓储服务</h2><p class="sec-sub white">覆盖跨境电商全流程需求，从入仓到交付，每个环节专业可靠</p></div>
+      <div class="home-svc-grid reveal">
+        <div class="hs-item"><div class="hs-icon">📦</div><h4>FBA中转入仓</h4><p>专业贴标·打托·转运<br>合规高效入仓</p></div>
+        <div class="hs-item"><div class="hs-icon">🚚</div><h4>一件代发 FBM</h4><p>订单自动对接<br>当日生成物流轨迹</p></div>
+        <div class="hs-item"><div class="hs-icon">🔄</div><h4>退货换标质检</h4><p>本地接收处理<br>支持二次销售</p></div>
+        <div class="hs-item"><div class="hs-icon">🏭</div><h4>本土POD生产</h4><p>美东自有工厂<br>本地生产+本地发货</p></div>
+        <div class="hs-item"><div class="hs-icon">🔗</div><h4>全链路解决方案</h4><p>头程·清关·仓储·配送<br>一体化跨境闭环</p></div>
+      </div>
+    </div>
+  </section>
+  <section class="section alt">
+    <div class="wrap">
+      <div class="reveal"><div class="sec-eye">Our Network</div><h2 class="sec-title">全美仓储网络布局</h2><p class="sec-sub">东、中、西部4仓覆盖全美，多仓联动协同，就近发货，全面提升配送效率</p></div>
+      <div class="home-map-wrap reveal"><img src="assets/contiguous-us-warehouse-points.png" alt="郑中海外仓全美仓储网络地图"></div>
+      <div style="text-align:center;margin-top:28px;" class="reveal"><a class="btn-gold" onclick="showPage('network')">查看仓储详情 →</a></div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="wrap">
+      <div class="home-about-grid">
+        <div class="home-about-text reveal">
+          <div class="sec-eye">About Us</div><h2 class="sec-title">关于郑中海外仓</h2>
+          <p>郑中海外仓隶属于<strong>河南郑中科技有限公司</strong>，总部坐落于河南省郑州市金水区，是一家专注于跨境电商供应链管理与美国本土仓储服务的新兴企业。</p>
+          <p>秉持<strong>「高效执行、系统协同、服务稳定」</strong>的经营理念，致力于打造专业化、信息化、智能化的海外仓储体系。核心团队均来自仓储、物流及跨境电商行业，超75%员工拥有五年以上实操经验。</p>
+          <div class="home-about-nums">
+            <div class="han"><div class="han-n">4<em>仓</em></div><div class="han-l">美国运营仓库</div></div>
+            <div class="han"><div class="han-n">6<em>辆</em></div><div class="han-l">自营运输车队</div></div>
+            <div class="han"><div class="han-n">75<em>%+</em></div><div class="han-l">五年以上经验员工</div></div>
+            <div class="han"><div class="han-n">7×24<em>h</em></div><div class="han-l">中英双语客服</div></div>
+          </div>
+        </div>
+        <div class="home-about-card reveal">
+          <div class="hac-lbl">Core Differentiators · 核心差异化</div>
+          <div class="hac-title">我们与同行最大的两点区别</div>
+          <div class="hac-pts">
+            <div class="hac-pt">🏭 美东自营POD服装工厂，实现本地生产+本地发货，帮助品牌真正落地美国市场</div>
+            <div class="hac-pt">🔗 全链路跨境服务闭环：头程运输→清关→仓储→本地配送，20年清关团队护航</div>
+            <div class="hac-pt">📦 领星WMS系统全面接入，全自动贴标与分拣，99.9%发货准确率</div>
+            <div class="hac-pt">🛡 1对1专属客户经理，7×24小时中英双语支持，中美沟通零壁垒</div>
+          </div>
+          <div style="margin-top:28px;"><a class="btn-gold" onclick="showPage('about')" style="font-size:13px;padding:11px 24px;">联系我们 →</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section alt">
+    <div class="wrap">
+      <div class="reveal"><div class="sec-eye">Core Differentiators</div><h2 class="sec-title">差异化核心亮点</h2><p class="sec-sub">郑中海外仓与同行最大的区别，也是最核心的竞争力</p></div>
+      <div class="diff-grid">
+        <div class="diff-card reveal"><div class="diff-icon">🏭</div><h3>本土POD服装工厂</h3><p>郑中海外仓在美国东部自营POD服装工厂，实现从生产、仓储到配送的一体化履约能力，真正帮助卖家在美国本土完成生产与交付。</p><ul class="diff-list"><li>本地生产，大幅缩短交付周期</li><li>减少跨境运输依赖，降低头程成本</li><li>支持品牌快速测试与迭代</li></ul><div class="diff-cap">不仅是仓储，更是本土供应链的延伸</div></div>
+        <div class="diff-card g reveal"><div class="diff-icon">🔗</div><h3>全链路跨境解决方案</h3><p>从中国出发，到美国交付，形成完整的跨境服务闭环。整合头程、清关、仓储与本地配送，让复杂的跨境链路变得可控且高效。</p><ul class="diff-list"><li>头程运输合作（海运 / 空运）</li><li>20年经验清关团队，全程护航</li><li>海外仓储与本地配送全覆盖</li></ul><div class="diff-cap">让复杂的跨境链路，变得可控且高效</div></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ===================== NETWORK ===================== -->
+<div class="page" id="page-network">
+  <div class="dark-hero"><div class="wrap"><div class="sec-eye white">Our Network</div><h2 class="sec-title white">仓储布局</h2><p class="sec-sub white">东、中、西部全方位覆盖，4仓联动协同，就近发货，全面提升配送效率</p></div></div>
+  <section class="section alt">
+    <div class="wrap">
+      <div class="reveal"><div class="sec-eye">Warehouse Map</div><h2 class="sec-title">全美仓储地图</h2></div>
+      <div class="map-embed-box reveal"><img src="assets/contiguous-us-warehouse-points.png" alt="郑中海外仓全美仓储网络"></div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="wrap">
+      <div class="reveal"><div class="sec-eye">Warehouse Details</div><h2 class="sec-title">各仓库详细介绍</h2></div>
+      <div class="wh-tabs reveal">
+        <div class="wh-tab-btn active" onclick="switchWH(this,'wh-east')">🏢 美东·特拉华仓 ×2</div>
+        <div class="wh-tab-btn" onclick="switchWH(this,'wh-mid')">🔀 美中·堪萨斯城仓</div>
+        <div class="wh-tab-btn" onclick="switchWH(this,'wh-west')">⚓ 美西·洛杉矶仓</div>
+      </div>
+      <div class="wh-block active" id="wh-east">
+        <div><div class="wh-overview"><div class="wh-ov-hd"><span class="wh-tag tag-e">美东 · 特拉华</span><h3>特拉华仓（×2）</h3><p>美国东部核心仓，双仓协同运营，覆盖东海岸主要消费城市。特拉华州全美最友好商业州之一，不征收销售税，为跨境卖家提供显著的成本优势。</p><div class="wh-tax">🏷 Sales Tax Free · 特拉华州免销售税</div></div><div class="wh-ov-body"><div class="wh-pts"><div class="wh-pt"><div class="wh-pt-dot d-e"></div>距巴尔的摩东部分拣中心约1小时车程，快速对接主要物流节点</div><div class="wh-pt"><div class="wh-pt-dot d-e"></div>辐射纽约、费城、华盛顿DC等东海岸核心消费城市</div><div class="wh-pt"><div class="wh-pt-dot d-e"></div>靠近东海岸主要港口和高速路网，清关高效便捷</div><div class="wh-pt"><div class="wh-pt-dot d-e"></div>双仓灵活调配，有效应对旺季订单高峰，保障稳定履约</div></div><div class="wh-svc-tags"><span class="wh-svc-tag">FBA中转</span><span class="wh-svc-tag">退货换标</span><span class="wh-svc-tag">一件代发</span><span class="wh-svc-tag">拍照质检</span></div></div></div></div>
+        <div class="wh-adv-list"><div class="wh-adv-title">核心优势</div><div class="wh-adv"><div class="wh-adv-icon ai-e">🏷</div><div><h4>免销售税政策优势</h4><p>特拉华州全美唯一无销售税州，入仓商品无需缴纳销售税，有效降低库存流通成本，让每笔交易都更具竞争力。</p></div></div><div class="wh-adv"><div class="wh-adv-icon ai-e">🌆</div><div><h4>东海岸核心辐射圈</h4><p>覆盖全美人口最密集的东北部经济带，距纽约市中心约2小时，可实现对纽约、费城、华盛顿等主要城市的快速配送。</p></div></div><div class="wh-adv"><div class="wh-adv-icon ai-e">🚢</div><div><h4>港口与交通枢纽优势</h4><p>紧邻东海岸主要港口，高速路网完善，货物清关后可直接入仓，大幅缩短港口到仓库的运输时间与物流成本。</p></div></div><div class="wh-adv"><div class="wh-adv-icon ai-e">🔄</div><div><h4>双仓协同联动</h4><p>两个仓库灵活联动，可根据库存情况动态调拨，高峰期互相补充，确保订单处理能力稳定，不因单仓产能限制影响客户业务。</p></div></div></div>
+      </div>
+      <div class="wh-block" id="wh-mid">
+        <div><div class="wh-overview"><div class="wh-ov-hd"><span class="wh-tag tag-m">美中 · 堪萨斯城</span><h3>堪萨斯城仓</h3><p>位于美国地理中心的战略枢纽仓，是全国分发的黄金节点。凭借铁路与公路双重优势，可高效覆盖中西部广大市场，运输时效稳定、成本合理。</p></div><div class="wh-ov-body"><div class="wh-pts"><div class="wh-pt"><div class="wh-pt-dot d-m"></div>位于美国地理中心区域，距全国各大城市距离均衡</div><div class="wh-pt"><div class="wh-pt-dot d-m"></div>美国中部重要铁路与公路枢纽，运输路线极为广泛</div><div class="wh-pt"><div class="wh-pt-dot d-m"></div>运输时效稳定，综合物流成本低，适合全国范围分发</div><div class="wh-pt"><div class="wh-pt-dot d-m"></div>与东部、西部仓库联动，构成全美配送网络的核心中枢</div></div><div class="wh-svc-tags"><span class="wh-svc-tag">全国分发</span><span class="wh-svc-tag">库存调拨</span><span class="wh-svc-tag">一件代发</span><span class="wh-svc-tag">中转配送</span></div></div></div></div>
+        <div class="wh-adv-list"><div class="wh-adv-title">核心优势</div><div class="wh-adv"><div class="wh-adv-icon ai-m">🎯</div><div><h4>地理中心战略位置</h4><p>堪萨斯城位于美国地理中心，到达全国各主要城市的运输距离最为均衡，是构建全国配送网络的最优节点之一。</p></div></div><div class="wh-adv"><div class="wh-adv-icon ai-m">🚆</div><div><h4>铁路+公路双重枢纽</h4><p>堪萨斯城是美国最大的铁路货运中心之一，同时拥有多条主要高速公路，货物运输方式灵活多样，时效与成本均可优化。</p></div></div><div class="wh-adv"><div class="wh-adv-icon ai-m">💰</div><div><h4>低成本高效分发</h4><p>中部地区整体运营成本低于东西海岸，租金、人工等综合成本优势明显，可有效降低客户的仓储与配送总成本。</p></div></div><div class="wh-adv"><div class="wh-adv-icon ai-m">🗺</div><div><h4>覆盖中西部全市场</h4><p>可快速覆盖芝加哥、达拉斯、丹佛、圣路易斯等中西部主要城市，尤其适合中西部市场渗透率高的跨境卖家。</p></div></div></div>
+      </div>
+      <div class="wh-block" id="wh-west">
+        <div><div class="wh-overview"><div class="wh-ov-hd"><span class="wh-tag tag-w">美西 · 洛杉矶</span><h3>洛杉矶仓</h3><p>紧邻洛杉矶港与长滩港的西海岸战略仓，是跨太平洋贸易的重要门户。货物从中国出发，海运抵达后可第一时间完成清关入仓，极大压缩头程时间。</p></div><div class="wh-ov-body"><div class="wh-pts"><div class="wh-pt"><div class="wh-pt-dot d-w"></div>紧邻洛杉矶港与长滩港，具备天然海运与清关优势</div><div class="wh-pt"><div class="wh-pt-dot d-w"></div>主要服务FBA备货、入仓及西海岸市场分发</div><div class="wh-pt"><div class="wh-pt-dot d-w"></div>为西海岸客户提供快速、高效的货物流转支持</div><div class="wh-pt"><div class="wh-pt-dot d-w"></div>覆盖洛杉矶、旧金山、西雅图等西海岸主要城市</div></div><div class="wh-svc-tags"><span class="wh-svc-tag">FBA入仓</span><span class="wh-svc-tag">港口清关</span><span class="wh-svc-tag">西海岸分发</span><span class="wh-svc-tag">货物中转</span></div></div></div></div>
+        <div class="wh-adv-list"><div class="wh-adv-title">核心优势</div><div class="wh-adv"><div class="wh-adv-icon ai-w">🚢</div><div><h4>港口直达，清关高效</h4><p>洛杉矶港与长滩港合计处理全美约40%的进口货物，本仓紧邻两港，货物下船后即可快速清关入仓，有效压缩头程时间。</p></div></div><div class="wh-adv"><div class="wh-adv-icon ai-w">📦</div><div><h4>FBA备货最优起点</h4><p>作为亚马逊FBA西部入仓的黄金起点，可高效完成验货、贴标、打托等FBA前置处理，快速入驻亚马逊仓库。</p></div></div><div class="wh-adv"><div class="wh-adv-icon ai-w">🌊</div><div><h4>西海岸市场覆盖</h4><p>洛杉矶、旧金山湾区是全美最大消费市场之一，西部仓可为这些高价值区域提供当日或次日达的本地配送服务。</p></div></div><div class="wh-adv"><div class="wh-adv-icon ai-w">🔀</div><div><h4>东西联动分发枢纽</h4><p>配合东部特拉华仓与中部堪萨斯城仓，货物可在西部入仓后向全国灵活调拨，实现三点联动的全美高效覆盖。</p></div></div></div>
+      </div>
+      <div class="multi-cta reveal"><div><h3>多仓联动，就近发货，全面降本提效</h3><p>四大仓库可灵活调拨库存，实现多点发货与就近配送。在订单量波动时保持稳定服务水平，无论旺季淡季，每位客户都能获得一致的高质量履约体验。</p></div><a class="btn-gold" onclick="showPage('about')">立即咨询合作 →</a></div>
+    </div>
+  </section>
+</div>
+
+<!-- ===================== SERVICES ===================== -->
+<div class="page" id="page-services">
+  <section class="section" style="padding-top:56px;">
+    <div class="wrap">
+      <div class="reveal"><div class="sec-eye">Our Services</div><h2 class="sec-title">核心服务</h2><p class="sec-sub">每项服务明确解决什么问题，为每一位跨境卖家提供最匹配的仓储方案</p></div>
+      <div class="svc-ov-grid">
+        <div class="svc-ov-card sov-b reveal"><div class="sov-icon">📦</div><h4>FBA中转入仓</h4><p>合规贴标·高效入仓<br>支持分批补货</p></div>
+        <div class="svc-ov-card sov-b reveal"><div class="sov-icon">🚚</div><h4>一件代发 FBM</h4><p>订单自动对接<br>当日发货出库</p></div>
+        <div class="svc-ov-card sov-b reveal"><div class="sov-icon">🔄</div><h4>退货换标质检</h4><p>本地接收处理<br>支持二次销售</p></div>
+        <div class="svc-ov-card sov-g reveal"><div class="sov-icon">🏭</div><h4>本土POD生产</h4><p>美东自有工厂<br>本地生产发货</p></div>
+        <div class="svc-ov-card sov-gr reveal"><div class="sov-icon">🔗</div><h4>全链路解决方案</h4><p>头程·清关·仓储<br>一体化跨境闭环</p></div>
+      </div>
+
+      <!-- FBA -->
+      <div class="sdb">
+        <div class="sdb-hd reveal"><div class="sdb-icon sdi-b">📦</div><div><h2>FBA中转与入仓</h2><div class="sub">Amazon FBA Transfer &amp; Fulfillment</div></div></div>
+        <p class="sdb-intro reveal">郑中海外仓提供专业的亚马逊FBA中转入仓服务，覆盖从货物接收、验货核对、FBA标准贴标、打板打托到预约送仓的全流程操作。团队熟悉亚马逊FBA入仓规范与各仓库要求，严格按照亚马逊标准执行，有效降低入仓拒货风险，保障您的补货计划准时落地。支持分批次、小批量的灵活入仓方式，配合全自动贴标设备，确保每件货物合规、准确、高效地送达亚马逊仓库。</p>
+        <div class="flow-section-title reveal">FBA中转服务流程</div>
+        <div class="linear-flow reveal">
+          <div class="lf-step"><div class="lf-num">01</div><div class="lf-icon">🚛</div><h5>卖家备货发货</h5><p>国内备货<br>安排头程运输</p></div>
+          <div class="lf-step"><div class="lf-num">02</div><div class="lf-icon">📋</div><h5>提交清关信息</h5><p>货物清单<br>清关资料提交</p></div>
+          <div class="lf-step"><div class="lf-num">03</div><div class="lf-icon">✅</div><h5>货物盘点检查</h5><p>仓库卸货<br>验货核对</p></div>
+          <div class="lf-step"><div class="lf-num">04</div><div class="lf-icon">🏠</div><h5>货物入库上架</h5><p>库位录入<br>系统同步</p></div>
+          <div class="lf-step"><div class="lf-num">05</div><div class="lf-icon">🏷</div><h5>FBA贴标打托</h5><p>合规贴标<br>托盘包装</p></div>
+          <div class="lf-step"><div class="lf-num">06</div><div class="lf-icon">🔄</div><h5>接收中转指令</h5><p>客户下达指令<br>安排发货</p></div>
+          <div class="lf-step"><div class="lf-num">07</div><div class="lf-icon" style="font-size:22px;background:linear-gradient(135deg,#ff8f00,#e65100);border-radius:50%;width:38px;height:38px;display:flex;align-items:center;justify-content:center;color:white;font-weight:900;margin:0 auto 10px;">a</div><h5>出库入FBA仓</h5><p>货物出库<br>中转完成</p></div>
+        </div>
+        <div class="flow-section-title reveal">仓储配送作业环节</div>
+        <div class="stage-flow reveal">
+          <div class="stage-row">
+            <div class="stage-label sl-green">📥 入仓阶段</div>
+            <div class="stage-steps">
+              <div class="stage-step"><div class="ss-icon">🚢</div><div class="ss-name">码头提柜拉柜</div></div>
+              <div class="ss-arrow">→</div>
+              <div class="stage-step"><div class="ss-icon">📦</div><div class="ss-name">货物出柜</div></div>
+              <div class="ss-arrow">→</div>
+              <div class="stage-step"><div class="ss-icon">🔀</div><div class="ss-name">打板转运</div></div>
+              <div class="ss-arrow">→</div>
+              <div class="stage-step"><div class="ss-icon">✅</div><div class="ss-name">收货验货</div></div>
+              <div class="ss-arrow">→</div>
+              <div class="stage-step"><div class="ss-icon">📂</div><div class="ss-name">上架归类</div></div>
+            </div>
+          </div>
+          <div class="stage-row">
+            <div class="stage-label sl-blue">🏭 在仓阶段</div>
+            <div class="stage-steps">
+              <div class="stage-step"><div class="ss-icon">🔒</div><div class="ss-name">货品安全管理</div></div>
+              <div class="ss-arrow">→</div>
+              <div class="stage-step"><div class="ss-icon">📊</div><div class="ss-name">货品盘点</div></div>
+              <div class="ss-arrow">→</div>
+              <div class="stage-step"><div class="ss-icon">🔄</div><div class="ss-name">货品移库</div></div>
+              <div class="ss-arrow">→</div>
+              <div class="stage-step"><div class="ss-icon">🔍</div><div class="ss-name">货品分拣</div></div>
+            </div>
+          </div>
+          <div class="stage-row">
+            <div class="stage-label sl-teal">🚀 出仓阶段</div>
+            <div class="stage-steps">
+              <div class="stage-step"><div class="ss-icon">🏷</div><div class="ss-name">标签条码</div></div>
+              <div class="ss-arrow">→</div>
+              <div class="stage-step"><div class="ss-icon">📬</div><div class="ss-name">一件代发</div></div>
+              <div class="ss-arrow">→</div>
+              <div class="stage-step"><div class="ss-icon">📫</div><div class="ss-name">混合装箱出货</div></div>
+              <div class="ss-arrow">→</div>
+              <div class="stage-step"><div class="ss-icon">🏠</div><div class="ss-name">打板出货/FBA</div></div>
+              <div class="ss-arrow">→</div>
+              <div class="stage-step"><div class="ss-icon">🚚</div><div class="ss-name">运输派送</div></div>
+            </div>
+          </div>
+          <div class="stage-row">
+            <div class="stage-label sl-orange">🔄 退货处理</div>
+            <div class="stage-steps">
+              <div class="stage-step"><div class="ss-icon">📥</div><div class="ss-name">退货入库</div></div>
+              <div class="ss-arrow">→</div>
+              <div class="stage-step"><div class="ss-icon">📦</div><div class="ss-name">重新包装</div></div>
+              <div class="ss-arrow">→</div>
+              <div class="stage-step"><div class="ss-icon">⚙️</div><div class="ss-name">异常订单处理</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="flow-section-title reveal">核心服务优势</div>
+        <div class="sdb-adv-grid reveal">
+          <div class="sdb-adv"><div class="sdb-adv-ico">⚡</div><h5>高效入仓，降低时效风险</h5><p>熟悉全美各FBA仓库特性与预约要求，提前安排，减少等待，确保补货计划按时落地，不影响店铺排名与销量。</p></div>
+          <div class="sdb-adv"><div class="sdb-adv-ico">🛡</div><h5>严格合规，避免入仓拒货</h5><p>严格按照亚马逊最新FBA操作规范执行，贴标、包装、尺寸全部合规，有效降低被拒货与罚款风险。</p></div>
+          <div class="sdb-adv"><div class="sdb-adv-ico">📦</div><h5>灵活调配，多仓分发</h5><p>支持亚马逊要求的多仓分配入仓方案，郑中4个仓库可分别承接不同仓库的发货任务，灵活高效不压货。</p></div>
+        </div>
+      </div>
+
+      <!-- FBM -->
+      <div class="sdb">
+        <div class="sdb-hd reveal"><div class="sdb-icon sdi-b">🚚</div><div><h2>一件代发（FBM Fulfillment）</h2><div class="sub">Fulfillment by Merchant · Drop Shipping</div></div></div>
+        <p class="sdb-intro reveal">郑中海外仓提供高效稳定的FBM一件代发服务，支持亚马逊、eBay、Walmart、独立站等主流平台的订单自动对接。收到订单后，系统自动推送至仓库，快速完成拣货、包装、出库，当天生成物流轨迹，有效提升买家体验，降低差评风险。我们的一件代发服务覆盖全品类，支持多运营商物流渠道选择，确保您的订单以最优时效、最低成本送达买家。</p>
+        <div class="flow-section-title reveal">一件代发服务流程</div>
+        <div class="loop-flow reveal">
+          <div class="loop-left">
+            <div class="loop-pt"><div class="loop-dot">1</div>卖家安排头程物流将商品运至郑中美国海外仓</div>
+            <div class="loop-pt"><div class="loop-dot">2</div>仓库接收货物，根据发货单清点货物</div>
+            <div class="loop-pt"><div class="loop-dot">3</div>与卖家确认到货信息，货物上架至仓库系统</div>
+            <div class="loop-pt"><div class="loop-dot">4</div>卖家使用系统创建并提交顾客订单</div>
+            <div class="loop-pt"><div class="loop-dot">5</div>仓库接收订单信息并根据订单拣货打包</div>
+            <div class="loop-dot done" style="width:auto;border-radius:12px;padding:8px 16px;margin-top:4px;font-size:13px;">✓ 快递上门取件配送，一件代发服务完成</div>
+          </div>
+          <div class="loop-right">
+            <div style="background:#fff;border-radius:14px;padding:28px;border:1px solid var(--gray-200);box-shadow:0 4px 16px rgba(0,0,0,.06);">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+                <div class="loop-node"><div class="ln-circle lnc-green">📋</div><div class="ln-label">卖家<br>备货</div></div>
+                <div style="color:var(--green-mid);font-size:22px;font-weight:700;">→</div>
+                <div class="loop-node"><div class="ln-circle lnc-blue">🏠</div><div class="ln-label">仓库<br>收货</div></div>
+                <div style="color:var(--green-mid);font-size:22px;font-weight:700;">→</div>
+                <div class="loop-node"><div class="ln-circle lnc-green">🛒</div><div class="ln-label">货物<br>上架</div></div>
+              </div>
+              <div style="display:flex;justify-content:flex-end;margin-bottom:20px;"><div style="color:var(--green-mid);font-size:22px;font-weight:700;">↓</div></div>
+              <div style="display:flex;justify-content:space-between;align-items:center;">
+                <div class="loop-node"><div class="ln-circle lnc-blue">🚚</div><div class="ln-label">快递<br>配送</div></div>
+                <div style="color:var(--green-mid);font-size:22px;font-weight:700;">←</div>
+                <div class="loop-node"><div class="ln-circle lnc-green">📦</div><div class="ln-label">订单<br>打包</div></div>
+                <div style="color:var(--green-mid);font-size:22px;font-weight:700;">←</div>
+                <div class="loop-node"><div class="ln-circle lnc-blue">📋</div><div class="ln-label">接收<br>订单</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="flow-section-title reveal">仓储配送流程</div>
+        <div class="linear-flow reveal">
+          <div class="lf-step"><div class="lf-num">01</div><div class="lf-icon">📝</div><h5>合同签订</h5><p>确认合作方案<br>开通系统权限</p></div>
+          <div class="lf-step"><div class="lf-num">02</div><div class="lf-icon">🖥</div><h5>系统对接</h5><p>平台API对接<br>订单自动同步</p></div>
+          <div class="lf-step"><div class="lf-num">03</div><div class="lf-icon">🏠</div><h5>货品入仓</h5><p>验货收货<br>系统录入上架</p></div>
+          <div class="lf-step"><div class="lf-num">04</div><div class="lf-icon">📋</div><h5>订单导入</h5><p>订单推送<br>系统自动处理</p></div>
+          <div class="lf-step"><div class="lf-num">05</div><div class="lf-icon">⚙️</div><h5>拣货配货</h5><p>精准拣货<br>备货核对</p></div>
+          <div class="lf-step"><div class="lf-num">06</div><div class="lf-icon">✅</div><h5>订单复核</h5><p>扫描核验<br>确保准确</p></div>
+          <div class="lf-step"><div class="lf-num">07</div><div class="lf-icon">📦</div><h5>产品打包</h5><p>标准包装<br>面单打印</p></div>
+          <div class="lf-step"><div class="lf-num">08</div><div class="lf-icon">🚀</div><h5>尾程派送</h5><p>物流揽收<br>轨迹实时</p></div>
+        </div>
+        <div class="flow-section-title reveal">核心服务优势</div>
+        <div class="sdb-adv-grid reveal">
+          <div class="sdb-adv"><div class="sdb-adv-ico">🔌</div><h5>多平台订单自动对接</h5><p>支持Amazon、eBay、Walmart、Shopify等主流平台API对接，订单自动下发，无需人工导入，处理效率极高。</p></div>
+          <div class="sdb-adv"><div class="sdb-adv-ico">⚡</div><h5>当日发货，提升买家体验</h5><p>订单接收后当日完成出库，当天生成物流轨迹，有效缩短配送时间，提升买家满意度，降低差评率与退货率。</p></div>
+          <div class="sdb-adv"><div class="sdb-adv-ico">🎯</div><h5>99.9%准确率，零差错</h5><p>全自动拣货+扫描核验系统，从拣货到出库全程双重校验，发货准确率高达99.9%，有效避免错发漏发。</p></div>
+        </div>
+      </div>
+
+      <!-- RETURNS -->
+      <div class="sdb">
+        <div class="sdb-hd reveal"><div class="sdb-icon sdi-b">🔄</div><div><h2>退货换标与质检</h2><div class="sub">Return Processing · Relabel · Quality Inspection</div></div></div>
+        <p class="sdb-intro reveal">跨境退货处理是许多卖家头疼的难题。郑中海外仓提供专业的本地退货接收与全流程处理服务，包括退货验收、质量检测、换标重新包装，以及支持二次上架销售，有效降低退货损耗，最大化库存价值。我们还提供详尽的退货质检报告与拍照存档服务，帮助卖家追踪退货原因，为平台纠纷提供有力证据，让退货管理真正透明可控。</p>
+        <div class="flow-section-title reveal">退货换标服务流程</div>
+        <div class="linear-flow reveal">
+          <div class="lf-step"><div class="lf-num">01</div><div class="lf-icon">📤</div><h5>卖家发送产品</h5><p>建立移除订单<br>发货至海外仓</p></div>
+          <div class="lf-step"><div class="lf-num">02</div><div class="lf-icon">🏠</div><h5>仓库接收货物</h5><p>登记到货信息<br>反馈给卖家</p></div>
+          <div class="lf-step"><div class="lf-num">03</div><div class="lf-icon">📋</div><h5>卖家下达指令</h5><p>确认到货信息<br>下达处理指令</p></div>
+          <div class="lf-step"><div class="lf-num">04</div><div class="lf-icon">🏷</div><h5>换标处理</h5><p>移除旧标签<br>贴新FBA标签</p></div>
+          <div class="lf-step"><div class="lf-num">05</div><div class="lf-icon">📦</div><h5>装箱回传数据</h5><p>装箱打包<br>数据回传卖家</p></div>
+          <div class="lf-step"><div class="lf-num">06</div><div class="lf-icon">📊</div><h5>卖家建立计划</h5><p>Amazon建计划<br>提供箱唛</p></div>
+          <div class="lf-step"><div class="lf-num">07</div><div class="lf-icon">🛒</div><h5>重新上架销售</h5><p>货品发回FBA<br>流程完成</p></div>
+        </div>
+        <div class="flow-section-title reveal">核心服务优势</div>
+        <div class="sdb-adv-grid reveal">
+          <div class="sdb-adv"><div class="sdb-adv-ico">💰</div><h5>最大化库存残值</h5><p>专业质检与二次处理，让可再销售的退货商品快速恢复上架条件，有效挽救退货损失，提升整体利润率。</p></div>
+          <div class="sdb-adv"><div class="sdb-adv-ico">⚡</div><h5>快速响应，降低资金占压</h5><p>退货接收后快速处理，减少库存在退货流程中的停滞时间，加速资金回流，优化库存周转效率。</p></div>
+          <div class="sdb-adv"><div class="sdb-adv-ico">📸</div><h5>全程拍照透明存档</h5><p>退货开箱全程拍照记录，质检报告详细透明，帮助卖家追踪退货原因，为平台纠纷提供有力证据支持。</p></div>
+        </div>
+      </div>
+
+      <!-- POD -->
+      <div class="sdb">
+        <div class="sdb-hd reveal"><div class="sdb-icon sdi-g">🏭</div><div><h2>本土POD生产与履约</h2><div class="sub">Print-on-Demand · Local Production &amp; Fulfillment</div></div></div>
+        <p class="sdb-intro reveal">这是郑中海外仓最独特的差异化服务。我们在美国东部自营POD服装工厂，实现从生产、仓储到配送的一体化本土履约能力。帮助服装品牌卖家真正实现「美国生产、美国发货」，大幅缩短交付周期，降低头程运输成本。按需生产模式彻底消除库存积压风险，支持品牌快速测试新品，小批量灵活起订，让您的跨境服装业务真正落地北美市场。</p>
+        <div class="flow-section-title reveal">POD生产履约流程</div>
+        <div class="linear-flow reveal">
+          <div class="lf-step"><div class="lf-num">01</div><div class="lf-icon">🎨</div><h5>设计上传</h5><p>客户上传设计<br>系统对接确认</p></div>
+          <div class="lf-step"><div class="lf-num">02</div><div class="lf-icon">🛒</div><h5>订单接收</h5><p>平台下单推送<br>系统自动处理</p></div>
+          <div class="lf-step"><div class="lf-num">03</div><div class="lf-icon">⚙️</div><h5>本地生产</h5><p>工厂打印成品<br>质量检验确认</p></div>
+          <div class="lf-step"><div class="lf-num">04</div><div class="lf-icon">📦</div><h5>包装出库</h5><p>品牌包装贴标<br>出库交物流</p></div>
+          <div class="lf-step"><div class="lf-num">05</div><div class="lf-icon">🚀</div><h5>本地发货</h5><p>本土快递揽收<br>次日达覆盖</p></div>
+          <div class="lf-step"><div class="lf-num">06</div><div class="lf-icon">📡</div><h5>全程追踪</h5><p>生产进度可查<br>物流轨迹实时</p></div>
+        </div>
+        <div class="flow-section-title reveal">核心服务优势</div>
+        <div class="sdb-adv-grid reveal">
+          <div class="sdb-adv"><div class="sdb-adv-ico">⚡</div><h5>大幅缩短交付周期</h5><p>本地生产+本地发货，从下单到交付最快1-3天，彻底告别跨境运输的漫长等待，极大提升买家体验与复购率。</p></div>
+          <div class="sdb-adv"><div class="sdb-adv-ico">💰</div><h5>降低头程成本</h5><p>无需从中国发货，省去头程运费、关税等费用，同时避免汇率波动风险，综合成本显著低于传统跨境模式。</p></div>
+          <div class="sdb-adv"><div class="sdb-adv-ico">🎯</div><h5>灵活测试，快速迭代</h5><p>按需生产，无需备货压仓，支持品牌快速上新、测款，降低库存风险，让卖家专注于选品与运营策略。</p></div>
+        </div>
+      </div>
+
+      <!-- CHAIN -->
+      <div class="sdb">
+        <div class="sdb-hd reveal"><div class="sdb-icon sdi-gr">🔗</div><div><h2>全链路跨境解决方案</h2><div class="sub">End-to-End Cross-border Logistics Solution</div></div></div>
+        <p class="sdb-intro reveal">郑中海外仓不只是一个仓库，更是您在美国的本地运营合作伙伴。我们整合国内头程运输、专业清关团队与美国本土仓储配送资源，为跨境卖家提供从中国出发到美国交付的全链路一体化服务。每个环节均有专业团队负责，数据实时同步，让您在中国也能清楚掌握货物在美国的每一个动态，真正实现跨境供应链的透明化与可控化。</p>
+        <div class="flow-section-title reveal">系统信息流程</div>
+        <div class="linear-flow reveal">
+          <div class="lf-step"><div class="lf-num">01</div><div class="lf-icon">👤</div><h5>登录系统</h5><p>账号登录<br>权限验证</p></div>
+          <div class="lf-step"><div class="lf-num">02</div><div class="lf-icon">📋</div><h5>创建订单</h5><p>录入订单信息<br>商品明细</p></div>
+          <div class="lf-step"><div class="lf-num">03</div><div class="lf-icon">📤</div><h5>提交订单</h5><p>订单推送<br>仓库接收</p></div>
+          <div class="lf-step"><div class="lf-num">04</div><div class="lf-icon">🏠</div><h5>仓库响应</h5><p>系统接单<br>触发作业</p></div>
+          <div class="lf-step"><div class="lf-num">05</div><div class="lf-icon">✅</div><h5>订单核对</h5><p>货物核验<br>确认无误</p></div>
+          <div class="lf-step"><div class="lf-num">06</div><div class="lf-icon">⚙️</div><h5>分拣打包</h5><p>拣货包装<br>面单生成</p></div>
+          <div class="lf-step"><div class="lf-num">07</div><div class="lf-icon">🚀</div><h5>尾程配送</h5><p>物流揽收<br>送达买家</p></div>
+          <div class="lf-step"><div class="lf-num">08</div><div class="lf-icon">📊</div><h5>信息回传</h5><p>状态同步<br>数据报告</p></div>
+        </div>
+        <div class="flow-section-title reveal">核心服务优势</div>
+        <div class="sdb-adv-grid reveal">
+          <div class="sdb-adv"><div class="sdb-adv-ico">🔗</div><h5>一站式服务，无缝衔接</h5><p>从中国发货到美国交付，单一合作伙伴承接全链条，省去多方协调的沟通成本，让跨境供应链管理更简单高效。</p></div>
+          <div class="sdb-adv"><div class="sdb-adv-ico">🛡</div><h5>20年清关经验护航</h5><p>专业清关团队拥有20年美国清关经验，熟悉各类商品的清关要求与关税政策，有效规避清关风险，保障货物安全入境。</p></div>
+          <div class="sdb-adv"><div class="sdb-adv-ico">📊</div><h5>全程数据可视，透明高效</h5><p>从国内发货到美国交付，每个节点实时可查，库存与订单数据透明，让跨境运营的不确定性降到最低。</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ===================== ADVANTAGES ===================== -->
+<div class="page" id="page-advantages">
+  <div class="dark-hero"><div class="wrap"><div class="sec-eye gold">Why Us</div><h2 class="sec-title white">核心优势</h2><p class="sec-sub white">选择我们能带来什么价值，侧重「结果」而非「工具」</p></div></div>
+  <section class="section"><div class="wrap">
+    <div class="adv-grid reveal">
+      <div class="adv-item"><div class="adv-num">01</div><h3>定制化仓储方案</h3><p>支持小仓定制与大仓隔断，为每位客户打造专属仓储空间，实现独立库存管理，避免混仓与操作干扰。</p><div class="adv-cap">让您的海外仓，真正成为自己的仓</div></div>
+      <div class="adv-item"><div class="adv-num">02</div><h3>全流程可视化管理</h3><p>支持远程监控仓库操作，库存与订单实时可查，操作过程透明可追溯，有效降低跨境运营的不确定性。</p><div class="adv-cap">让您随时掌握货物动态，远程也能安心管理</div></div>
+      <div class="adv-item"><div class="adv-num">03</div><h3>高效稳定的履约体系</h3><p>自动化设备+智能系统驱动，支持平台面单，当天生成物流轨迹，发货准确率高达99.9%，高峰期依然稳定输出。</p><div class="adv-cap">高效履约，保障订单稳定交付</div></div>
+      <div class="adv-item"><div class="adv-num">04</div><h3>专属服务与本土支持</h3><p>1对1专人客户经理对接，7×24小时中英双语客服支持，中方管理团队驻场，沟通高效无障碍。</p><div class="adv-cap">中美无时差服务，快速响应每一个需求</div></div>
+      <div class="adv-item"><div class="adv-num">05</div><h3>灵活的系统适配能力</h3><p>支持多种行业主流WMS系统，根据客户业务需求灵活选择，避免系统迁移带来的额外成本与操作复杂性。</p><div class="adv-cap">系统适配业务，而不是业务适配系统</div></div>
+      <div class="adv-item"><div class="adv-num">06</div><h3>本土POD生产能力</h3><p>美东自有POD服装工厂，实现从生产、仓储到配送的一体化履约能力，真正帮助品牌在美国落地。</p><div class="adv-cap">不仅是仓储，更是本土供应链的延伸</div></div>
+    </div>
+    <div class="value-strip reveal">
+      <div class="vs-l"><h3>选择郑中海外仓<br>您将获得</h3><p>不只是仓储服务，更是一套可持续扩展的跨境运营能力</p></div>
+      <div class="vs-items">
+        <div class="vs-item"><div class="vs-ck">⚡</div><p>更快的发货时效，当日订单当日处理</p></div>
+        <div class="vs-item"><div class="vs-ck">💰</div><p>更低的物流与仓储综合成本</p></div>
+        <div class="vs-item"><div class="vs-ck">📊</div><p>更稳定的订单履约能力</p></div>
+        <div class="vs-item"><div class="vs-ck">🔍</div><p>更透明的库存与数据管理</p></div>
+        <div class="vs-item"><div class="vs-ck">⭐</div><p>更高的买家满意度与复购率</p></div>
+        <div class="vs-item"><div class="vs-ck">🛡</div><p>99.9%准确率，长期稳定可靠</p></div>
+      </div>
+    </div>
+  </div></section>
+</div>
+
+<!-- ===================== TECH ===================== -->
+<div class="page" id="page-tech">
+  <div class="dark-hero"><div class="wrap"><div class="sec-eye white">Operations &amp; Tech</div><h2 class="sec-title white">技术支持</h2><p class="sec-sub white">我们用什么工具和设备来保障服务，侧重「能力」而非「结果」</p></div></div>
+  <section class="section"><div class="wrap">
+    <div class="tech-grid">
+      <div class="tech-card reveal"><div class="tc-num">01</div><div class="tc-icon">🖥</div><h3>WMS仓储管理系统</h3><p>仓库全面接入领星WMS系统（Lingxing WMS），实现订单自动导入、库存实时同步与自动化发货管理。同时支持多种行业主流WMS平台，适配平台卖家与独立站不同需求，系统迁移零成本。</p><div class="tech-tags"><span class="t-tag">领星WMS</span><span class="t-tag">多系统适配</span><span class="t-tag">实时库存同步</span><span class="t-tag">订单自动导入</span></div></div>
+      <div class="tech-card reveal"><div class="tc-num">02</div><div class="tc-icon">⚙️</div><h3>自动化生产设备</h3><p>全自动贴标签机大幅提升出货效率与标签准确率；全自动分拣系统（最新升级）保障高峰期稳定出货能力，彻底告别手工操作带来的误差与低效。</p><div class="tech-tags"><span class="t-tag">全自动贴标</span><span class="t-tag">自动分拣系统</span><span class="t-tag">高峰期稳定</span><span class="t-tag">99.9%准确率</span></div></div>
+      <div class="tech-card reveal"><div class="tc-num">03</div><div class="tc-icon">🚛</div><h3>自营运输车队</h3><p>公司自有运输资源覆盖主要仓储区域间的货物调拨与短途配送，运输安全可控、响应迅速，有效降低第三方物流依赖。</p><div class="fleet-g"><div class="fleet-i"><div class="fleet-n">4<span>辆</span></div><div class="fleet-l">26英尺卡车</div></div><div class="fleet-i"><div class="fleet-n">2<span>辆</span></div><div class="fleet-l">53英尺卡车</div></div></div></div>
+      <div class="tech-card reveal"><div class="tc-num">04</div><div class="tc-icon">📋</div><h3>标准化作业流程</h3><p>从入库、分拣、贴标到发货，全流程可视化、可追踪，确保每单稳定、准确，客户可随时查询库存与订单状态。</p><div class="tech-tags"><span class="t-tag">入库验货</span><span class="t-tag">分拣贴标</span><span class="t-tag">打包发货</span><span class="t-tag">实时查询</span></div></div>
+    </div>
+    <!-- OMS/WMS system diagram -->
+    <div style="margin-top:56px;margin-bottom:20px;" class="reveal"><div class="flow-section-title">仓配管理一体化系统架构</div></div>
+    <div class="sys-diagram reveal">
+      <div class="sys-cloud" style="margin-bottom:28px;"><div class="sys-cloud-icon">☁️</div><div class="sys-cloud-label" style="font-size:13px;font-weight:700;color:var(--gray-600);">云端同步</div></div>
+      <div class="sys-grid" style="grid-template-columns:1fr 60px 1.4fr 60px 1fr;align-items:start;gap:16px;">
+        <div>
+          <div style="background:linear-gradient(135deg,var(--blue-mid),var(--navy));color:#fff;border-radius:12px;padding:16px 20px;text-align:center;margin-bottom:14px;"><div style="font-size:16px;margin-bottom:4px;">📋</div><div style="font-family:'Noto Serif SC',serif;font-size:14px;font-weight:700;">订单管理系统</div><div style="font-size:11px;opacity:.7;margin-top:2px;">Order Management</div></div>
+          <div class="sys-col" style="gap:6px;">
+            <div class="sys-box">📦 订单管理</div>
+            <div class="sys-box">📊 库存管理</div>
+            <div class="sys-box">🚀 发货管理</div>
+            <div class="sys-box">🔀 转运管理</div>
+            <div class="sys-box">📈 报表管理</div>
+            <div class="sys-box">⚙️ 设置管理</div>
+          </div>
+          <div style="text-align:center;margin-top:12px;"><div class="sys-tag">OMS</div></div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding-top:60px;gap:8px;">
+          <div style="color:var(--green-mid);font-size:22px;">⇄</div>
+          <div style="color:var(--green-mid);font-size:22px;">⇄</div>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:center;">
+          <div style="background:linear-gradient(135deg,#e8f5e9,#c8e6c9);border-radius:20px;padding:30px 24px;text-align:center;border:2px solid var(--green-mid);">
+            <div style="font-size:40px;margin-bottom:12px;">🏭</div>
+            <div style="font-family:'Noto Serif SC',serif;font-size:16px;font-weight:700;color:var(--navy-dark);">郑中海外仓</div>
+            <div style="font-size:12px;color:var(--gray-400);margin-top:4px;">智能仓配中台</div>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding-top:60px;gap:8px;">
+          <div style="color:var(--green-mid);font-size:22px;">⇄</div>
+          <div style="color:var(--green-mid);font-size:22px;">⇄</div>
+        </div>
+        <div>
+          <div style="background:linear-gradient(135deg,var(--blue-mid),var(--navy));color:#fff;border-radius:12px;padding:16px 20px;text-align:center;margin-bottom:14px;"><div style="font-size:16px;margin-bottom:4px;">🏠</div><div style="font-family:'Noto Serif SC',serif;font-size:14px;font-weight:700;">仓库管理系统</div><div style="font-size:11px;opacity:.7;margin-top:2px;">Warehouse Management</div></div>
+          <div class="sys-col" style="gap:6px;">
+            <div class="sys-box">📥 入库管理</div>
+            <div class="sys-box">📤 出库管理</div>
+            <div class="sys-box">🚚 发货管理</div>
+            <div class="sys-box">📊 报表管理</div>
+            <div class="sys-box">💰 费用管理</div>
+            <div class="sys-box">⚙️ 设置管理</div>
+          </div>
+          <div style="text-align:center;margin-top:12px;"><div class="sys-tag">WMS</div></div>
+        </div>
+      </div>
+    </div>
+    <!-- System features -->
+    <div style="margin-top:40px;margin-bottom:20px;" class="reveal"><div class="flow-section-title">系统核心功能</div></div>
+    <div class="feat-list reveal">
+      <div class="feat-item"><div class="feat-icon">🔌</div><div><h5>API对接</h5><p>主流跨境电商平台Amazon、Walmart、Shopify、eBay、Wayfair等全面对接，订单自动同步，无需人工导入。</p></div></div>
+      <div class="feat-item"><div class="feat-icon">📋</div><div><h5>订单管理</h5><p>智能合并订单，处理费和运费预估展示，图示订单处理流程，订单状态全程可查，异常预警实时推送。</p></div></div>
+      <div class="feat-item"><div class="feat-icon">🏠</div><div><h5>库存管理</h5><p>PDA录入+系统管理，实时查看库存情况，智能拣货，货物准确高效出库，多仓库存统一调拨管理。</p></div></div>
+      <div class="feat-item"><div class="feat-icon">📊</div><div><h5>数据分析</h5><p>随时查看库存消耗情况，订单量涨跌幅度，为运营决策赋能，为项目经营管理提供数据支撑。</p></div></div>
+      <div class="feat-item"><div class="feat-icon">💰</div><div><h5>财务对账</h5><p>计费方案清晰明确，费用可下沉到By订单、By SKU级别，亦可按天、按周、按月查看总体费用，账单透明可信。</p></div></div>
+    </div>
+    <div style="margin-top:48px;margin-bottom:20px;" class="reveal"><div class="flow-section-title">标准化作业流程</div></div>
+    <div class="proc-flow reveal">
+      <div class="proc-s"><div class="proc-icon">📥</div><h4>入库验货</h4><p>收货核对<br>验数登记<br>系统同步</p></div>
+      <div class="proc-s"><div class="proc-icon">📂</div><h4>分拣入位</h4><p>SKU分类<br>库位精准<br>系统对应</p></div>
+      <div class="proc-s"><div class="proc-icon">🏷</div><h4>贴标操作</h4><p>全自动贴标<br>准确率99.9%<br>合规执行</p></div>
+      <div class="proc-s"><div class="proc-icon">📦</div><h4>打包发货</h4><p>标准包装<br>当日出库<br>面单生成</p></div>
+      <div class="proc-s"><div class="proc-icon">📡</div><h4>实时追踪</h4><p>全程可视<br>轨迹实时<br>客户查询</p></div>
+    </div>
+    <div class="multi-cta reveal" style="margin-top:40px;"><div><h3>四仓联动，智能调拨</h3><p>四大仓库可灵活调拨库存，实现多点发货与就近配送，在订单量波动时保持稳定的服务水平，确保不论旺季还是淡季，每位客户都能获得一致的高质量履约体验。</p></div><a class="btn-gold" onclick="showPage('about')">了解更多 →</a></div>
+  </div></section>
+</div>
+
+<!-- ===================== ABOUT ===================== -->
+<div class="page" id="page-about">
+  <div class="dark-hero"><div class="wrap"><div class="sec-eye gold">About Us</div><h2 class="sec-title white">关于我们</h2><p class="sec-sub white">建立品牌信任，传递团队背景与经营理念</p></div></div>
+  <section class="section"><div class="wrap">
+    <div class="about-layout">
+      <div class="about-text reveal">
+        <div class="sec-eye">Our Story</div><h2 class="sec-title">品牌故事</h2>
+        <p>郑中海外仓由<strong>河南郑中科技有限公司</strong>运营，总部位于河南省郑州市金水区，专注于跨境电商供应链管理与美国海外仓储服务。河南郑中科技有限公司是河南省郑中建设工程有限公司旗下独立运营的子公司，依托母公司多年实体企业经营基础，在美国布局海外仓与本地履约业务。</p>
+        <p>我们始终以服务中国跨境电商卖家和出口企业为核心，围绕美国本土仓储与配送，提供仓储、中转、退货换标、一件代发和供应链协同服务。我们希望通过清晰的报价、稳定的运营和及时的处理，为客户提供安全、高效的一体化履约解决方案。</p>
+        <p>核心团队拥有仓储、物流及跨境电商行业的实操经验与专业管理能力。秉持<strong>「高效执行、系统协同、服务稳定」</strong>的经营理念，我们将货物入仓、库存管理、订单操作、出库交接和异常反馈纳入清晰、可追踪的流程，持续建设专业化、信息化、智能化的海外仓储体系。</p>
+        <div class="belief-grid">
+          <div class="belief-card"><div class="bc-icon">⚡</div><h4>高效执行</h4><p>每一项操作标准化、可追踪</p></div>
+          <div class="belief-card"><div class="bc-icon">🔗</div><h4>系统协同</h4><p>多仓、多系统无缝配合</p></div>
+          <div class="belief-card"><div class="bc-icon">🛡</div><h4>服务稳定</h4><p>长期稳定履约是核心承诺</p></div>
+        </div>
+      </div>
+      <div class="team-card reveal">
+        <div class="team-eye">Team &amp; Capabilities · 团队实力</div>
+        <h3>专业团队，值得信赖的运营能力</h3>
+        <div class="team-stats">
+          <div class="ts"><div class="ts-n">75<em>%+</em></div><div class="ts-l">五年以上经验员工</div></div>
+          <div class="ts"><div class="ts-n">4<em>仓</em></div><div class="ts-l">美国运营仓库</div></div>
+          <div class="ts"><div class="ts-n">6<em>辆</em></div><div class="ts-l">自营运输车队</div></div>
+          <div class="ts"><div class="ts-n">7×24<em>h</em></div><div class="ts-l">中英双语客服</div></div>
+        </div>
+        <div class="team-pts">
+          <div class="team-pt">核心团队来自仓储、物流及跨境电商行业，实操经验丰富</div>
+          <div class="team-pt">熟悉北美市场标准及FBA规范流程，合规操作有保障</div>
+          <div class="team-pt">管理及操作团队覆盖仓储运营、跨境物流、系统管理等领域</div>
+          <div class="team-pt">国内专属客服团队，中英双语无障碍沟通，零时差响应</div>
+        </div>
+      </div>
+    </div>
+  </div></section>
+  <section class="section alt" style="padding-top:0;"><div class="wrap">
+    <div class="contact-inner reveal">
+      <div class="cl">
+        <div style="font-size:11px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--gold-light);margin-bottom:14px;">Contact Us</div>
+        <h3>让您的品牌，<br>在美国真正落地</h3>
+        <p>国内客服与业务支持团队，提供中英文双语对接服务，彻底打通中美两地信息沟通壁垒，确保沟通高效顺畅。</p>
+        <p>服务时间：7×24小时中英双语支持<br>总部地址：河南省郑州市金水区</p>
+        <div class="cl-slogan">"成功，我们共同创造！<br>Success, we create together!"</div>
+      </div>
+      <div class="c-items">
+        <div class="c-item"><div class="ci-ico">📞</div><div><div class="ci-lbl">电话 / 微信</div><div class="ci-val"><a href="tel:15837153345">15837153345</a></div></div></div>
+        <div class="c-item"><div class="ci-ico">✉</div><div><div class="ci-lbl">邮箱</div><div class="ci-val"><a href="mailto:pe10yi@163.com">pe10yi@163.com</a></div></div></div>
+        <div class="c-item"><div class="ci-ico">📍</div><div><div class="ci-lbl">总部地址</div><div class="ci-val">河南省郑州市金水区</div></div></div>
+        <div class="c-item"><div class="ci-ico">🕐</div><div><div class="ci-lbl">服务时间</div><div class="ci-val">7×24h 中英双语支持</div></div></div>
+      </div>
+    </div>
+  </div></section>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <div class="fb-logo">
+          <div class="fb-logo-icon logo-svg"><img src="assets/zhengzhong-logo.png" alt="郑中海外仓" style="width:38px;height:38px;object-fit:contain;border-radius:6px;display:block;"></div>
+          <div class="fb-logo-text"><span class="nlc">郑中海外仓</span><span class="nle">Zhengzhong Overseas Warehouse</span></div>
+        </div>
+        <p class="fb-desc">隶属于河南郑中科技有限公司，专注美国本土仓储与配送，为中国跨境电商卖家提供专业化、信息化、智能化的海外仓储解决方案。</p>
+        <div class="f-slogan">"成功，我们共同创造！"</div>
+      </div>
+      <div class="footer-col"><h5>核心服务</h5><ul><li><a onclick="showPage('services')">FBA中转入仓</a></li><li><a onclick="showPage('services')">一件代发 FBM</a></li><li><a onclick="showPage('services')">退货换标质检</a></li><li><a onclick="showPage('services')">本土POD生产</a></li><li><a onclick="showPage('services')">全链路解决方案</a></li></ul></div>
+      <div class="footer-col"><h5>仓储网络</h5><ul><li><a onclick="showPage('network')">美东特拉华仓 ×2</a></li><li><a onclick="showPage('network')">美中堪萨斯城仓</a></li><li><a onclick="showPage('network')">美西洛杉矶仓</a></li></ul></div>
+      <div class="footer-col"><h5>联系我们</h5><ul><li><a href="tel:15837153345">📞 15837153345</a></li><li><a href="mailto:pe10yi@163.com">✉ pe10yi@163.com</a></li><li><a>📍 郑州市金水区</a></li></ul></div>
+    </div>
+    <div class="footer-bot"><p>© 2025 河南郑中科技有限公司 · 郑中海外仓 · All Rights Reserved</p><p>专注美国本土仓储 · 助力中国品牌出海</p></div>
+  </div>
+</footer><script>
+function showPage(id){
+  document.querySelectorAll('.page').forEach(function(p){p.classList.remove('active');});
+  document.querySelectorAll('.nav-tab').forEach(function(t){t.classList.remove('active');});
+  var pg=document.getElementById('page-'+id);
+  if(pg){pg.classList.add('active');window.scrollTo(0,0);}
+  var tab=document.querySelector('[data-page="'+id+'"]');
+  if(tab) tab.classList.add('active');
+  setTimeout(triggerReveals,80);
+}
+function switchWH(btn,blockId){
+  document.querySelectorAll('.wh-tab-btn').forEach(function(b){b.classList.remove('active');});
+  document.querySelectorAll('.wh-block').forEach(function(b){b.classList.remove('active');});
+  btn.classList.add('active');
+  var block=document.getElementById(blockId);
+  if(block) block.classList.add('active');
+}
+function triggerReveals(){
+  var obs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target);}
+    });
+  },{threshold:0.06});
+  document.querySelectorAll('.page.active .reveal:not(.in)').forEach(function(el){obs.observe(el);});
+}
+window.addEventListener('scroll',function(){
+  document.getElementById('nav').style.background=window.scrollY>40?'rgba(4,9,15,0.99)':'rgba(13,34,54,0.97)';
+});
+// Initialize first page
+triggerReveals();
+</script>
+</body>
+</html>
